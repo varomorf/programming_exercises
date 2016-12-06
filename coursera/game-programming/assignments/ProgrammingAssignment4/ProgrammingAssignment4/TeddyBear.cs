@@ -19,6 +19,7 @@ namespace ProgrammingAssignment4
         // collecting support
         bool collecting = false;
         bool targetSet = false;
+        Pickup target = null;
 
         // drawing support
         Texture2D sprite;
@@ -76,6 +77,14 @@ namespace ProgrammingAssignment4
         public Rectangle CollisionRectangle
         {
             get { return drawRectangle; }
+        }
+
+        /// <summary>
+        /// Gets the target of the teddy
+        /// </summary>
+        public Pickup Target
+        {
+            get { return target; }
         }
 
         #endregion
@@ -144,13 +153,35 @@ namespace ProgrammingAssignment4
             spriteBatch.Draw(sprite, drawRectangle, Color.White);
         }
 
+        public void TargetNearest(List<Pickup> pickups)
+        {
+            Vector2 nearestTarget = pickups[0].CollisionRectangle.Center.ToVector2();
+            Pickup nearestPickup = pickups[0];
+
+            foreach (Pickup pickup in pickups)
+            {
+                float nearestDistance = Vector2.Distance(location, nearestTarget);
+                Vector2 newTarget = pickup.CollisionRectangle.Center.ToVector2();
+                float distance = Vector2.Distance(location, newTarget);
+
+                if (distance < nearestDistance)
+                {
+                    nearestTarget = newTarget;
+                    nearestPickup = pickup;
+                }
+            }
+
+            SetTarget(nearestTarget);
+            target = nearestPickup;
+        }
+
         /// <summary>
         /// Sets a target for the teddy to move toward
         /// </summary>
         /// <param name="target">target</param>
         public void SetTarget(Vector2 target)
         {
-			targetSet = true;
+            targetSet = true;
 
             // STUDENTS: set teddy velocity based on teddy center location and target
             Vector2 direction = new Vector2(target.X - location.X, target.Y - location.Y);

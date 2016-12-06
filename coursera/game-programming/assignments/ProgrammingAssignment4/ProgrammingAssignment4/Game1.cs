@@ -118,22 +118,26 @@ namespace ProgrammingAssignment4
                     if(pickups.Count == 1)
                     {
                         teddy.SetTarget(pickupPosition);
+                    }else
+                    {
+                        teddy.TargetNearest(pickups);
                     }
                 }
             }
 
             // check for collision between collecting teddy and targeted pickup
             if (teddy.Collecting &&
-                teddy.CollisionRectangle.Intersects(pickups[0].CollisionRectangle))
+                teddy.CollisionRectangle.Intersects(teddy.Target.CollisionRectangle))
             {
                 // STUDENTS: remove targeted pickup from list (it's always at location 0)
-                pickups.RemoveAt(0);
+                pickups.Remove(teddy.Target);
 
                 // STUDENTS: if there's another pickup to collect, set teddy target
                 // If not, clear teddy target and stop the teddy from collecting
                 if(pickups.Count != 0)
                 {
-                    teddy.SetTarget(pickups[0].CollisionRectangle.Location.ToVector2());
+                    teddy.TargetNearest(pickups);
+                    //teddy.SetTarget(pickups[0].CollisionRectangle.Location.ToVector2());
                 }else
                 {
                     teddy.ClearTarget();
