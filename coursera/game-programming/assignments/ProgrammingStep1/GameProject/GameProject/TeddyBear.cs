@@ -22,6 +22,7 @@ namespace GameProject
         // drawing support
         Texture2D sprite;
         Rectangle drawRectangle;
+        const ProjectileType projectileType = ProjectileType.TeddyBear;
 
         // velocity information
         Vector2 velocity = new Vector2(0, 0);
@@ -141,6 +142,18 @@ namespace GameProject
             BounceLeftRight();
 
             // fire projectile as appropriate
+            elapsedShotMilliseconds += gameTime.ElapsedGameTime.Milliseconds;
+
+            if(elapsedShotMilliseconds > firingDelay)
+            {
+                elapsedShotMilliseconds = 0;
+                firingDelay = GetRandomFiringDelay();
+
+                Texture2D projectileSprite = Game1.GetProjectileSprite(projectileType);
+                int projectileY = drawRectangle.Center.Y + GameConstants.TeddyBearProjectileOffset;
+                Projectile projectile = new Projectile(projectileType, projectileSprite, drawRectangle.Center.X, projectileY, -GetProjectileYVelocity());
+                Game1.AddProjectile(projectile);
+            }
             // timer concept (for animations) introduced in Chapter 7
 
         }

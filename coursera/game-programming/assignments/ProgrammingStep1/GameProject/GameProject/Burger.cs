@@ -21,6 +21,7 @@ namespace GameProject
         // graphic and drawing info
         Texture2D sprite;
         Rectangle drawRectangle;
+        const ProjectileType projectileType = ProjectileType.FrenchFries;
 
         // burger stats
         int health = 100;
@@ -76,15 +77,53 @@ namespace GameProject
         public void Update(GameTime gameTime, MouseState mouse)
         {
             // burger should only respond to input if it still has health
+            if(health > 0)
+            {
+                // move burger using mouse (and get it centered)
+                drawRectangle.X = mouse.X - drawRectangle.Width / 2;
+                drawRectangle.Y = mouse.Y - drawRectangle.Height / 2;
+                // clamp burger in window
+                if(drawRectangle.X < 0)
+                {
+                    drawRectangle.X = 0;
+                }else if(drawRectangle.Right > GameConstants.WindowWidth)
+                {
+                    drawRectangle.X = GameConstants.WindowWidth - drawRectangle.Width;
+                }
+                if (drawRectangle.Y < 0)
+                {
+                    drawRectangle.Y = 0;
+                }
+                else if (drawRectangle.Bottom > GameConstants.WindowHeight)
+                {
+                    drawRectangle.Y = GameConstants.WindowHeight - drawRectangle.Height;
+                }
 
-            // move burger using mouse
+                // update shooting allowed
+                if (!canShoot)
+                {
+                    elapsedCooldownMilliseconds += gameTime.ElapsedGameTime.Milliseconds;
 
-            // clamp burger in window
+                    if(elapsedCooldownMilliseconds >= GameConstants.BurgerTotalCooldownMilliseconds || mouse.LeftButton == ButtonState.Released)
+                    {
+                        canShoot = true;
+                        elapsedCooldownMilliseconds = 0;
+                    }
+                }
 
-            // update shooting allowed
-            // timer concept (for animations) introduced in Chapter 7
+                // timer concept (for animations) introduced in Chapter 7
 
-            // shoot if appropriate
+                // shoot if appropriate
+                if (canShoot && mouse.LeftButton == ButtonState.Pressed)
+                {
+                    canShoot = false;
+
+                    Texture2D projectileSprite = Game1.GetProjectileSprite(projectileType);
+                    int projectileY = drawRectangle.Center.Y - GameConstants.FrenchFriesProjectileOffset;
+                    Projectile projectile = new Projectile(projectileType, projectileSprite, drawRectangle.Center.X, projectileY, GameConstants.FrenchFriesProjectileSpeed);
+                    Game1.AddProjectile(projectile);
+                }
+            }
 
         }
 
