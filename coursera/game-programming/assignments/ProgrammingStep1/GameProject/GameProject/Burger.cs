@@ -64,6 +64,23 @@ namespace GameProject
             get { return drawRectangle; }
         }
 
+        /// <summary>
+        /// Gets or sets the health. Health cannnot be lower than zero.
+        /// </summary>
+        public int Health
+        {
+            get { return health; }
+            set
+            {
+                if(value < 0)
+                {
+                    health = 0;
+                }
+
+                health = value;
+            }
+        }
+
         #endregion
 
         #region Public methods
