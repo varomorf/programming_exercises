@@ -153,6 +153,11 @@ namespace GameProject
                 int projectileY = drawRectangle.Center.Y + GameConstants.TeddyBearProjectileOffset;
                 Projectile projectile = new Projectile(projectileType, projectileSprite, drawRectangle.Center.X, projectileY, -GetProjectileYVelocity());
                 Game1.AddProjectile(projectile);
+
+                // use instance to lower volume as it was horrible
+                SoundEffectInstance instance = shootSound.CreateInstance();
+                instance.Volume = 0.2f;
+                instance.Play();
             }
             // timer concept (for animations) introduced in Chapter 7
 
@@ -198,12 +203,14 @@ namespace GameProject
                 // bounce off top
                 drawRectangle.Y = 0;
                 velocity.Y *= -1;
+                bounceSound.Play();
             }
             else if ((drawRectangle.Y + drawRectangle.Height) > GameConstants.WindowHeight)
             {
                 // bounce off bottom
                 drawRectangle.Y = GameConstants.WindowHeight - drawRectangle.Height;
                 velocity.Y *= -1;
+                bounceSound.Play();
             }
         }
         /// <summary>
@@ -216,12 +223,14 @@ namespace GameProject
                 // bounc off left
                 drawRectangle.X = 0;
                 velocity.X *= -1;
+                bounceSound.Play();
             }
             else if ((drawRectangle.X + drawRectangle.Width) > GameConstants.WindowWidth)
             {
                 // bounce off right
                 drawRectangle.X = GameConstants.WindowWidth - drawRectangle.Width;
                 velocity.X *= -1;
+                bounceSound.Play();
             }
         }
 

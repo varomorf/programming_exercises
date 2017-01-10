@@ -91,14 +91,27 @@ namespace GameProject
         /// </summary>
         /// <param name="gameTime">game time</param>
         /// <param name="mouse">the current state of the mouse</param>
-        public void Update(GameTime gameTime, MouseState mouse)
+        public void Update(GameTime gameTime, KeyboardState keyboard)
         {
             // burger should only respond to input if it still has health
             if(health > 0)
             {
-                // move burger using mouse (and get it centered)
-                drawRectangle.X = mouse.X - drawRectangle.Width / 2;
-                drawRectangle.Y = mouse.Y - drawRectangle.Height / 2;
+                // move burger using keyboard
+                if (keyboard.IsKeyDown(Keys.W))
+                {
+                    drawRectangle.Y -= GameConstants.BurgerMovementAmount;
+                }else if (keyboard.IsKeyDown(Keys.S))
+                {
+                    drawRectangle.Y += GameConstants.BurgerMovementAmount;
+                }
+                if (keyboard.IsKeyDown(Keys.A))
+                {
+                    drawRectangle.X -= GameConstants.BurgerMovementAmount;
+                } else if (keyboard.IsKeyDown(Keys.D))
+                {
+                    drawRectangle.X += GameConstants.BurgerMovementAmount;
+                }
+
                 // clamp burger in window
                 if(drawRectangle.X < 0)
                 {
@@ -121,7 +134,7 @@ namespace GameProject
                 {
                     elapsedCooldownMilliseconds += gameTime.ElapsedGameTime.Milliseconds;
 
-                    if(elapsedCooldownMilliseconds >= GameConstants.BurgerTotalCooldownMilliseconds || mouse.LeftButton == ButtonState.Released)
+                    if(elapsedCooldownMilliseconds >= GameConstants.BurgerTotalCooldownMilliseconds || keyboard.IsKeyUp(Keys.Space))
                     {
                         canShoot = true;
                         elapsedCooldownMilliseconds = 0;
@@ -131,7 +144,7 @@ namespace GameProject
                 // timer concept (for animations) introduced in Chapter 7
 
                 // shoot if appropriate
-                if (canShoot && mouse.LeftButton == ButtonState.Pressed)
+                if (canShoot && keyboard.IsKeyDown(Keys.Space))
                 {
                     canShoot = false;
 
@@ -139,6 +152,7 @@ namespace GameProject
                     int projectileY = drawRectangle.Center.Y - GameConstants.FrenchFriesProjectileOffset;
                     Projectile projectile = new Projectile(projectileType, projectileSprite, drawRectangle.Center.X, projectileY, GameConstants.FrenchFriesProjectileSpeed);
                     Game1.AddProjectile(projectile);
+                    shootSound.Play();
                 }
             }
 
