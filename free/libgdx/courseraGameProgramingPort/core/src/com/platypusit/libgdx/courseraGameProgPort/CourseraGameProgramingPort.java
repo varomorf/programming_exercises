@@ -2,26 +2,43 @@ package com.platypusit.libgdx.courseraGameProgPort;
 
 import com.badlogic.gdx.ApplicationAdapter;
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
 public class CourseraGameProgramingPort extends ApplicationAdapter {
-	SpriteBatch batch;
-	Texture img;
+
+	private SpriteBatch batch;
+	private Texture burgerTexture;
+
+	private Burger burger;
 	
 	@Override
 	public void create () {
 		batch = new SpriteBatch();
-		img = new Texture("graphics/burger.png");
+		burgerTexture = new Texture(Burger.TEXTURE_PATH);
+
+		burger = new Burger(burgerTexture, 0, 0);
 	}
 
 	@Override
 	public void render () {
-		Gdx.gl.glClearColor(1, 0, 0, 1);
+		update();
+		draw();
+	}
+
+	private void update(){
+
+	}
+
+    private void draw(){
+        Color clearColor = Color.TEAL;
+        Gdx.gl.glClearColor(clearColor.r, clearColor.g, clearColor.b, clearColor.a);
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
+
 		batch.begin();
-		batch.draw(img, 0, 0);
+		batch.draw(burgerTexture, 0, 0);
 		batch.end();
 	}
 }
