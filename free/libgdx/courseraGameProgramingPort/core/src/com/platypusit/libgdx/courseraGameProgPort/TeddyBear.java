@@ -4,6 +4,7 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
+import com.badlogic.gdx.utils.TimeUtils;
 
 import static com.platypusit.libgdx.courseraGameProgPort.GameConstants.BEAR_FIRING_RATE_RANGE;
 import static com.platypusit.libgdx.courseraGameProgPort.GameConstants.BEAR_MIN_FIRING_DELAY;
@@ -55,11 +56,93 @@ public class TeddyBear {
     }
 
     /**
+     * Updates the teddy bear's location, bouncing if necessary. Also has the teddy bear fire a projectile when it's time to.
+     * @param deltaMillis delta time in millis
+     */
+    public void update(long deltaMillis)
+    {
+        // move the teddy bear
+        drawRectangle.x += (int)(velocity.x * deltaMillis);
+        drawRectangle.y += (int)(velocity.y * deltaMillis);
+
+        // bounce as necessary
+        bounceTopBottom();
+        bounceLeftRight();
+
+        // fire projectile as appropriate
+        elapsedShotMilliseconds += deltaMillis;
+
+        if(elapsedShotMilliseconds > firingDelay)
+        {
+            elapsedShotMilliseconds = 0;
+            firingDelay = getRandomFiringDelay();
+
+            // TODO firing
+//            Texture projectileSprite = Game1.GetProjectileSprite(projectileType);
+//            Vector2 center = Vector2.Zero;
+//            drawRectangle.getCenter(center);
+//
+//            int projectileY = (int) (center.y + GameConstants.TEDDY_BEAR_PROJECTILE_OFFSET);
+//            Projectile projectile = new Projectile(projectileType, projectileSprite, drawRectangle.Center.X, projectileY, -GetProjectileYVelocity());
+//            Game1.AddProjectile(projectile);
+
+            // use instance to lower volume as it was horrible TODO sound
+            //SoundEffectInstance instance = shootSound.CreateInstance();
+            //instance.Volume = 0.2f;
+            //instance.Play();
+        }
+        // timer concept (for animations) introduced in Chapter 7
+
+    }
+
+    /**
      * Draws the teddy bear
      * @param batch the sprite batch to use
      */
     public void draw(SpriteBatch batch) {
         batch.draw(texture, drawRectangle.x, drawRectangle.y);
+    }
+
+    /**
+     * Bounces the teddy bear off the top and bottom window borders if necessary
+     */
+    private void bounceTopBottom()
+    {
+        if (drawRectangle.y < 0)
+        {
+            // bounce off top
+            drawRectangle.y = 0;
+            velocity.y *= -1;
+            //bounceSound.Play();
+        }
+        else if ((drawRectangle.y + drawRectangle.height) > GameConstants.WINDOW_HEIGHT)
+        {
+            // bounce off bottom
+            drawRectangle.y = GameConstants.WINDOW_HEIGHT - drawRectangle.height;
+            velocity.y *= -1;
+            //bounceSound.Play();
+        }
+    }
+
+    /**
+     * Bounces the teddy bear off the left and right window borders if necessary
+     */
+    private void bounceLeftRight()
+    {
+        if (drawRectangle.x < 0)
+        {
+            // bounc off left
+            drawRectangle.x = 0;
+            velocity.x *= -1;
+            //bounceSound.Play();
+        }
+        else if ((drawRectangle.x + drawRectangle.width) > GameConstants.WINDOW_WIDTH)
+        {
+            // bounce off right
+            drawRectangle.x = GameConstants.WINDOW_WIDTH - drawRectangle.width;
+            velocity.x *= -1;
+            //bounceSound.Play();
+        }
     }
 
     /**
@@ -69,4 +152,5 @@ public class TeddyBear {
     protected int getRandomFiringDelay() {
         return RandomNumberGenerator.next(BEAR_MIN_FIRING_DELAY, BEAR_FIRING_RATE_RANGE);
     }
+
 }
