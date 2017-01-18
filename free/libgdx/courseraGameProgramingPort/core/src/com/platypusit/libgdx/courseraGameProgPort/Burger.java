@@ -39,7 +39,9 @@ public class Burger {
     public Burger(Texture texture, int x, int y) {
         this.texture = texture;
 
-        drawRectangle = new Rectangle(x, y, texture.getWidth(), texture.getHeight());
+        int centeredX = x - texture.getWidth() / 2;
+        int centeredY = y - texture.getHeight() / 2;
+        drawRectangle = new Rectangle(centeredX, centeredY, texture.getWidth(), texture.getHeight());
     }
 
     public Rectangle getCollisionRectangle(){
