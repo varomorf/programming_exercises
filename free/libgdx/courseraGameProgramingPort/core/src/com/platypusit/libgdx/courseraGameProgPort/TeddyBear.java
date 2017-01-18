@@ -4,7 +4,6 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
-import com.badlogic.gdx.utils.TimeUtils;
 
 import static com.platypusit.libgdx.courseraGameProgPort.GameConstants.BEAR_FIRING_RATE_RANGE;
 import static com.platypusit.libgdx.courseraGameProgPort.GameConstants.BEAR_MIN_FIRING_DELAY;
@@ -30,8 +29,8 @@ public class TeddyBear {
     private Vector2 velocity = new Vector2(0, 0);
 
     // shooting support
-    private int elapsedShotMilliseconds = 0;
-    private int firingDelay;
+    private float elapsedShotSeconds = 0;
+    private float firingDelay;
 
     // sound effects TODO
     //private SoundEffect bounceSound;
@@ -57,24 +56,24 @@ public class TeddyBear {
 
     /**
      * Updates the teddy bear's location, bouncing if necessary. Also has the teddy bear fire a projectile when it's time to.
-     * @param deltaMillis delta time in millis
+     * @param deltaSeconds delta time in seconds
      */
-    public void update(long deltaMillis)
+    public void update(float deltaSeconds)
     {
         // move the teddy bear
-        drawRectangle.x += (int)(velocity.x * deltaMillis);
-        drawRectangle.y += (int)(velocity.y * deltaMillis);
+        drawRectangle.x += (int)(velocity.x * deltaSeconds);
+        drawRectangle.y += (int)(velocity.y * deltaSeconds);
 
         // bounce as necessary
         bounceTopBottom();
         bounceLeftRight();
 
         // fire projectile as appropriate
-        elapsedShotMilliseconds += deltaMillis;
+        elapsedShotSeconds += deltaSeconds;
 
-        if(elapsedShotMilliseconds > firingDelay)
+        if(elapsedShotSeconds > firingDelay)
         {
-            elapsedShotMilliseconds = 0;
+            elapsedShotSeconds = 0;
             firingDelay = getRandomFiringDelay();
 
             // TODO firing
@@ -149,8 +148,8 @@ public class TeddyBear {
      * Gets a random firing delay between MIN_FIRING_DELAY and MIN_FIRING_DELAY + FIRING_RATE_RANGE
      * @return the random firing delay
      */
-    protected int getRandomFiringDelay() {
-        return RandomNumberGenerator.next(BEAR_MIN_FIRING_DELAY, BEAR_FIRING_RATE_RANGE);
+    protected float getRandomFiringDelay() {
+        return RandomNumberGenerator.nextFloat(BEAR_MIN_FIRING_DELAY, BEAR_FIRING_RATE_RANGE);
     }
 
 }

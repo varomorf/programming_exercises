@@ -12,7 +12,7 @@ public class RandomNumberGenerator {
     private static final Random RAND = new Random();
 
     /**
-     * Returns a nonnegative random number less than maxValue (exclusive)
+     * Returns a non negative random number less than maxValue (exclusive)
      * @param maxValue the exclusive max value
      * @return the random number
      */
@@ -21,13 +21,13 @@ public class RandomNumberGenerator {
     }
 
     /**
-     * Returns a nonnegative random number less than maxValue (exclusive)
+     * Returns a non negative random number less than maxValue (exclusive)
      * @param minValue the inclusive min value
      * @param maxValue the exclusive max value
      * @return the random number
      */
     public static int next(int minValue, int maxValue) {
-        return minValue +  RAND.nextInt(maxValue);
+        return minValue +  RAND.nextInt(maxValue - minValue);
     }
 
     /**
@@ -37,5 +37,15 @@ public class RandomNumberGenerator {
      */
     public static float nextFloat(float maxValue) {
         return RAND.nextFloat() * maxValue;
+    }
+
+    /**
+     * Returns a non negative random number less than maxValue (exclusive)
+     * @param minValue the inclusive min value
+     * @param maxValue the exclusive max value
+     * @return the random number
+     */
+    public static float nextFloat(float minValue, float maxValue) {
+        return minValue + (RAND.nextFloat() * (maxValue - minValue));
     }
 }

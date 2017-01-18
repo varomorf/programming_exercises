@@ -3,7 +3,9 @@ package com.platypusit.libgdx.courseraGameProgPort;
 import com.badlogic.gdx.math.Vector2;
 
 /**
- * All the constants used in the game
+ * All the constants used in the game.
+ *
+ * Speeds or time related values are in units per second.
  *
  * Created by alfergon on 17/01/17.
  */
@@ -14,10 +16,10 @@ public class GameConstants {
     public static final int WINDOW_HEIGHT = 600;
 
     // projectile characteristics
-    public static final float TEDDY_BEAR_PROJECTILE_SPEED = 0.3f;
+    public static final int TEDDY_BEAR_PROJECTILE_SPEED = 300;
     public static final int TEDDY_BEAR_PROJECTILE_DAMAGE = 5;
     public static final int TEDDY_BEAR_PROJECTILE_OFFSET = 20;
-    public static final float FRENCH_FRIES_PROJECTILE_SPEED = 0.4f;
+    public static final int FRENCH_FRIES_PROJECTILE_SPEED = 400;
     public static final int FRENCH_FRIES_PROJECTILE_DAMAGE = 5;
     public static final int FRENCH_FRIES_PROJECTILE_OFFSET = 10;
 
@@ -25,10 +27,10 @@ public class GameConstants {
     public static final int MAX_BEARS = 5;
     public static final int BEAR_POINTS = 10;
     public static final int BEAR_DAMAGE = 10;
-    public static final float MIN_BEAR_SPEED = 0.1f;
-    public static final float BEAR_SPEED_RANGE = 0.2f;
-    public static final int BEAR_MIN_FIRING_DELAY = 500;
-    public static final int BEAR_FIRING_RATE_RANGE = 1000;
+    public static final int MIN_BEAR_SPEED = 100;
+    public static final int BEAR_SPEED_RANGE = 200;
+    public static final float BEAR_MIN_FIRING_DELAY = 0.5f;
+    public static final float BEAR_FIRING_RATE_RANGE = 1f;
 
     // burger characteristics
     public static final int BURGER_INITIAL_HEALTH = 100;
