@@ -19,7 +19,10 @@ public class CourseraGameProgramingPort extends ApplicationAdapter {
 		batch = new SpriteBatch();
 		burgerTexture = new Texture(Burger.TEXTURE_PATH);
 
-		burger = new Burger(burgerTexture, 0, 0);
+        // add burger object calculating x and y (no need to center sprite as Burger constructor does it)
+        int burgerX = GameConstants.WINDOW_WIDTH / 2;
+        int burgerY = GameConstants.WINDOW_HEIGHT / 8;
+        burger = new Burger(burgerTexture, burgerX, burgerY);
 	}
 
 	@Override
@@ -38,7 +41,7 @@ public class CourseraGameProgramingPort extends ApplicationAdapter {
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
 		batch.begin();
-		batch.draw(burgerTexture, 0, 0);
+		burger.draw(batch);
 		batch.end();
 	}
 }
