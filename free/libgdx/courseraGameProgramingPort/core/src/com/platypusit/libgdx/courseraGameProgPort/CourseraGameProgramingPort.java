@@ -16,8 +16,7 @@ import static com.platypusit.libgdx.courseraGameProgPort.GameConstants.*;
 public class CourseraGameProgramingPort extends ApplicationAdapter {
 
 	private SpriteBatch batch;
-	private Texture burgerTexture;
-	private Texture teddyBearTexture;
+    private Texture teddyBearTexture;
 
 	private Burger burger;
     private List<TeddyBear> bears = new ArrayList<>();
@@ -25,7 +24,8 @@ public class CourseraGameProgramingPort extends ApplicationAdapter {
     @Override
 	public void create () {
 		batch = new SpriteBatch();
-		burgerTexture = new Texture(Burger.TEXTURE_PATH);
+
+        Texture burgerTexture = new Texture(Burger.TEXTURE_PATH);
 		teddyBearTexture = new Texture(TeddyBear.TEXTURE_PATH);
 
         // add burger object calculating x and y (no need to center sprite as Burger constructor does it)
