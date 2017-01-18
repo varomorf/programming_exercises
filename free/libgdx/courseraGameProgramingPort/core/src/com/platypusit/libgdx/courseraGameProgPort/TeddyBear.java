@@ -1,11 +1,9 @@
 package com.platypusit.libgdx.courseraGameProgPort;
 
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
-
-import java.util.Random;
-import java.util.stream.IntStream;
 
 import static com.platypusit.libgdx.courseraGameProgPort.GameConstants.BEAR_FIRING_RATE_RANGE;
 import static com.platypusit.libgdx.courseraGameProgPort.GameConstants.BEAR_MIN_FIRING_DELAY;
@@ -38,8 +36,13 @@ public class TeddyBear {
     //private SoundEffect bounceSound;
     //private SoundEffect shootSound;
 
-    private static IntStream firingDelayRandom = new Random().ints(BEAR_MIN_FIRING_DELAY, BEAR_FIRING_RATE_RANGE + 1);
-
+    /**
+     * Constructs a teddy bear centered on the given x and y with the given velocity.
+     * @param texture The texture to be used for the teddy bear.
+     * @param x the x location of the center of the teddy bear.
+     * @param y the y location of the center of the teddy bear.
+     * @param velocity the velocity of the teddy bear.
+     */
     public TeddyBear(Texture texture, int x, int y, Vector2 velocity) {
         this.texture = texture;
         this.velocity = velocity;
@@ -51,7 +54,19 @@ public class TeddyBear {
         firingDelay = getRandomFiringDelay();
     }
 
+    /**
+     * Draws the teddy bear
+     * @param batch the sprite batch to use
+     */
+    public void draw(SpriteBatch batch) {
+        batch.draw(texture, drawRectangle.x, drawRectangle.y);
+    }
+
+    /**
+     * Gets a random firing delay between MIN_FIRING_DELAY and MIN_FIRING_DELAY + FIRING_RATE_RANGE
+     * @return the random firing delay
+     */
     protected int getRandomFiringDelay() {
-        return firingDelayRandom.findAny().getAsInt();
+        return RandomNumberGenerator.next(BEAR_MIN_FIRING_DELAY, BEAR_FIRING_RATE_RANGE);
     }
 }
