@@ -1,6 +1,7 @@
 package com.platypusit.libgdx.courseraGameProgPort;
 
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Rectangle;
 
 /**
@@ -62,5 +63,9 @@ public class Burger {
 
     public void update(){
 
+    }
+
+    public void draw(SpriteBatch batch){
+        batch.draw(texture, drawRectangle.x, drawRectangle.y);
     }
 }
