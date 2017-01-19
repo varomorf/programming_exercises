@@ -2,7 +2,7 @@ package com.platypusit.libgdx.courseraGameProgPort;
 
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.badlogic.gdx.math.Rectangle;
+import com.badlogic.gdx.math.Rectangle2D;
 import com.badlogic.gdx.math.Vector2;
 
 import static com.platypusit.libgdx.courseraGameProgPort.GameConstants.BEAR_FIRING_RATE_RANGE;
@@ -23,7 +23,7 @@ public class TeddyBear {
 
     // drawing support
     private Texture texture;
-    private Rectangle drawRectangle;
+    private Rectangle2D drawRectangle;
 
     // velocity information
     private Vector2 velocity = new Vector2(0, 0);
@@ -49,7 +49,7 @@ public class TeddyBear {
 
         int centeredX = x - texture.getWidth() / 2;
         int centeredY = y - texture.getHeight() / 2;
-        drawRectangle = new Rectangle(centeredX, centeredY, texture.getWidth(), texture.getHeight());
+        drawRectangle = new Rectangle2D(centeredX, centeredY, texture.getWidth(), texture.getHeight());
 
         firingDelay = getRandomFiringDelay();
     }
@@ -78,8 +78,7 @@ public class TeddyBear {
 
             // TODO firing
 //            Texture projectileSprite = Game1.GetProjectileSprite(projectileType);
-//            Vector2 center = Vector2.Zero;
-//            drawRectangle.getCenter(center);
+//            Vector2 center = drawRectangle.getCenter();
 //
 //            int projectileY = (int) (center.y + GameConstants.TEDDY_BEAR_PROJECTILE_OFFSET);
 //            Projectile projectile = new Projectile(projectileType, projectileSprite, drawRectangle.Center.X, projectileY, -GetProjectileYVelocity());
@@ -107,14 +106,14 @@ public class TeddyBear {
      */
     private void bounceTopBottom()
     {
-        if (drawRectangle.y < 0)
+        if (drawRectangle.getTop() > GameConstants.WINDOW_HEIGHT)
         {
             // bounce off top
             drawRectangle.y = 0;
             velocity.y *= -1;
             //bounceSound.Play();
         }
-        else if ((drawRectangle.y + drawRectangle.height) > GameConstants.WINDOW_HEIGHT)
+        else if (drawRectangle.getBottom() <= 0)
         {
             // bounce off bottom
             drawRectangle.y = GameConstants.WINDOW_HEIGHT - drawRectangle.height;
@@ -128,14 +127,14 @@ public class TeddyBear {
      */
     private void bounceLeftRight()
     {
-        if (drawRectangle.x < 0)
+        if (drawRectangle.getLeft() < 0)
         {
-            // bounc off left
+            // bounce off left
             drawRectangle.x = 0;
             velocity.x *= -1;
             //bounceSound.Play();
         }
-        else if ((drawRectangle.x + drawRectangle.width) > GameConstants.WINDOW_WIDTH)
+        else if (drawRectangle.getRight() > GameConstants.WINDOW_WIDTH)
         {
             // bounce off right
             drawRectangle.x = GameConstants.WINDOW_WIDTH - drawRectangle.width;

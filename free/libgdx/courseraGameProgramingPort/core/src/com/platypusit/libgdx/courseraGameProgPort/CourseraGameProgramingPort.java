@@ -90,7 +90,7 @@ public class CourseraGameProgramingPort extends ApplicationAdapter {
         TeddyBear newBear = new TeddyBear(teddyBearTexture, bearX, bearY, bearVelocity);
 
         // make sure we don't spawn into a collision TODO
-//        List<Rectangle> collisionRectangles = GetCollisionRectangles();
+//        List<Rectangle2D> collisionRectangles = GetCollisionRectangles();
 //        while(CollisionUtils.IsCollisionFree(newBear.DrawRectangle, collisionRectangles))
 //        {
 //            bearX = getRandomLocation(GameConstants.SpawnBorderSize, GameConstants.WindowWidth - GameConstants.SpawnBorderSize);
