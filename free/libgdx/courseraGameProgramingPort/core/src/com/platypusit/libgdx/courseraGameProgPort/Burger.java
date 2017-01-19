@@ -39,9 +39,8 @@ public class Burger {
     public Burger(Texture texture, int x, int y) {
         this.texture = texture;
 
-        int centeredX = x - texture.getWidth() / 2;
-        int centeredY = y - texture.getHeight() / 2;
-        drawRectangle = new Rectangle2D(centeredX, centeredY, texture.getWidth(), texture.getHeight());
+        drawRectangle = new Rectangle2D(0, 0, texture.getWidth(), texture.getHeight());
+        drawRectangle.setCenter(x, y);
     }
 
     public Rectangle2D getCollisionRectangle() {
