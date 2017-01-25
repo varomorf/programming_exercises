@@ -1,7 +1,9 @@
 apply plugin: "java"
 
 sourceCompatibility = 1.8
-sourceSets.main.java.srcDirs = [ "src/" ]
+sourceSets.main.java.srcDirs = [ "src/main/java/" ]
+sourceSets.test.java.srcDirs = [ "src/test/java/" ]
+sourceSets.test.resources.srcDirs = [ "src/test/resources/" ]
 
 project.ext.mainClassName = "com.platypusit.libgdx.courseraGameProgPort.desktop.DesktopLauncher"
 project.ext.assetsDir = new File("../core/assets");
