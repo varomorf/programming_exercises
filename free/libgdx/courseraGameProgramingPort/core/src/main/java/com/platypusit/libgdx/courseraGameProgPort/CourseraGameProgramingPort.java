@@ -6,7 +6,6 @@ import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.badlogic.gdx.math.Rectangle2D;
 import com.badlogic.gdx.math.Vector2;
 
 import java.util.ArrayList;
@@ -81,6 +80,7 @@ public class CourseraGameProgramingPort extends ApplicationAdapter {
 	private void update(){
         // turn delta time from seconds to millis
         float deltaSeconds = Gdx.graphics.getDeltaTime();
+        burger.update(deltaSeconds);
         for (TeddyBear bear : bears) {
             bear.update(deltaSeconds);
         }

@@ -1,8 +1,14 @@
 package com.platypusit.libgdx.courseraGameProgPort;
 
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Input;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Rectangle2D;
+import com.badlogic.gdx.math.Vector2;
+
+import static com.platypusit.libgdx.courseraGameProgPort.CourseraGameProgramingPort.addProjectile;
+import static com.platypusit.libgdx.courseraGameProgPort.CourseraGameProgramingPort.getProjectileSprite;
 
 /**
  * <p>A burger.</p>
@@ -17,13 +23,14 @@ public class Burger {
     // graphic and drawing info
     Texture texture;
     Rectangle2D drawRectangle;
+    Vector2 center = new Vector2();
 
     // burger stats
     int health = 100;
 
     // shooting support
     boolean canShoot = true;
-    int elapsedCooldownMilliseconds = 0;
+    int elapsedCooldownSeconds = 0;
 
     // sound effect TODO
     //SoundEffect shootSound;
@@ -59,8 +66,76 @@ public class Burger {
         this.health = health;
     }
 
-    public void update() {
+    /**
+     * Updates the burger's location
+     * @param deltaSeconds delta time in seconds
+     */
+    public void update(float deltaSeconds) {
+        // burger should only respond to input if it still has health
+        if(health > 0)
+        {
+            // move burger using keyboard
+            if (Gdx.input.isKeyPressed(Input.Keys.W))
+            {
+                drawRectangle.y -= GameConstants.BURGER_MOVEMENT_AMOUNT;
+            }else if (Gdx.input.isKeyPressed(Input.Keys.S))
+            {
+                drawRectangle.y += GameConstants.BURGER_MOVEMENT_AMOUNT;
+            }
+            if (Gdx.input.isKeyPressed(Input.Keys.A))
+            {
+                drawRectangle.x -= GameConstants.BURGER_MOVEMENT_AMOUNT;
+            } else if (Gdx.input.isKeyPressed(Input.Keys.D))
+            {
+                drawRectangle.x += GameConstants.BURGER_MOVEMENT_AMOUNT;
+            }
 
+            // clamp burger in window
+            if(drawRectangle.x < 0)
+            {
+                drawRectangle.x = 0;
+            }else if(drawRectangle.getRight() > GameConstants.WINDOW_WIDTH)
+            {
+                drawRectangle.x = GameConstants.WINDOW_WIDTH - drawRectangle.width;
+            }
+            if (drawRectangle.y < 0)
+            {
+                drawRectangle.y = 0;
+            }
+            else if (drawRectangle.getBottom() > GameConstants.WINDOW_HEIGHT)
+            {
+                drawRectangle.y = GameConstants.WINDOW_HEIGHT - drawRectangle.height;
+            }
+
+            // update shooting allowed
+            if (!canShoot)
+            {
+                elapsedCooldownSeconds += deltaSeconds;
+
+                if(elapsedCooldownSeconds >= GameConstants.BURGER_TOTAL_COOLDOWN_SECONDS || !Gdx.input.isKeyPressed(Input.Keys.SPACE))
+                {
+                    canShoot = true;
+                    elapsedCooldownSeconds = 0;
+                }
+            }
+
+            // timer concept (for animations) introduced in Chapter 7
+
+            // shoot if appropriate
+            if (canShoot && Gdx.input.isKeyPressed(Input.Keys.SPACE))
+            {
+                canShoot = false;
+
+                Texture projectileSprite = getProjectileSprite(PROJECTILE_TYPE);
+
+                drawRectangle.getCenter(center);
+                float projectileY = center.y + GameConstants.FRENCH_FRIES_PROJECTILE_OFFSET;
+                Projectile projectile = new Projectile(PROJECTILE_TYPE, projectileSprite, center.x, projectileY, GameConstants.FRENCH_FRIES_PROJECTILE_SPEED);
+                addProjectile(projectile);
+                //TODO sound
+                //shootSound.Play();
+            }
+        }
     }
 
     public void draw(SpriteBatch batch) {
