@@ -15,18 +15,49 @@ import static com.platypusit.libgdx.courseraGameProgPort.GameConstants.*;
 
 public class CourseraGameProgramingPort extends ApplicationAdapter {
 
-	private SpriteBatch batch;
+    private SpriteBatch batch;
     private Texture teddyBearTexture;
+    private static Texture teddyBearProjectileSprite;
+    private static Texture frenchFriesSprite;
 
 	private Burger burger;
     private List<TeddyBear> bears = new ArrayList<>();
+    private static List<Projectile> projectiles = new ArrayList<>();
+
+
+    /**
+     * <p>Gets the projectile sprite for the given projectile type.</p>
+     * @param type the projectile type.
+     * @return the projectile sprite for the type.
+     */
+    public static Texture getProjectileSprite(ProjectileType type)
+    {
+        if (type.equals(ProjectileType.TEDDY_BEAR))
+        {
+            return teddyBearProjectileSprite;
+        }
+
+        // defaults to frenchFriesSprite
+        return frenchFriesSprite;
+    }
+
+    /**
+     * <p>Adds the given projectile to the game.</p>
+     * @param projectile the projectile to add.
+     */
+    public static void addProjectile(Projectile projectile)
+    {
+        projectiles.add(projectile);
+    }
 
     @Override
 	public void create () {
 		batch = new SpriteBatch();
 
-        Texture burgerTexture = new Texture(Burger.TEXTURE_PATH);
+		Texture burgerTexture = new Texture(Burger.TEXTURE_PATH);
 		teddyBearTexture = new Texture(TeddyBear.TEXTURE_PATH);
+        teddyBearProjectileSprite = new Texture(Projectile.TEDDY_BEAR_PROJECTILE_TEXTURE_PATH);
+        frenchFriesSprite = new Texture(Projectile.FRENCH_FRIES_PROJECTILE_TEXTURE_PATH);
 
         // add burger object calculating x and y (no need to center sprite as Burger constructor does it)
         int burgerX = WINDOW_WIDTH / 2;
@@ -52,6 +83,9 @@ public class CourseraGameProgramingPort extends ApplicationAdapter {
         for (TeddyBear bear : bears) {
             bear.update(deltaSeconds);
         }
+        for (Projectile projectile : projectiles) {
+            projectile.update(deltaSeconds);
+        }
     }
 
     private void draw(){
@@ -65,6 +99,10 @@ public class CourseraGameProgramingPort extends ApplicationAdapter {
 
         for (TeddyBear bear : bears) {
             bear.draw(batch);
+        }
+
+        for (Projectile projectile : projectiles) {
+            projectile.draw(batch);
         }
 
         batch.end();

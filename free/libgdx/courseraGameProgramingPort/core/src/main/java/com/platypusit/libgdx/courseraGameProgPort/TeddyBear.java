@@ -5,6 +5,8 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Rectangle2D;
 import com.badlogic.gdx.math.Vector2;
 
+import static com.platypusit.libgdx.courseraGameProgPort.CourseraGameProgramingPort.addProjectile;
+import static com.platypusit.libgdx.courseraGameProgPort.CourseraGameProgramingPort.getProjectileSprite;
 import static com.platypusit.libgdx.courseraGameProgPort.GameConstants.BEAR_FIRING_RATE_RANGE;
 import static com.platypusit.libgdx.courseraGameProgPort.GameConstants.BEAR_MIN_FIRING_DELAY;
 
@@ -74,22 +76,26 @@ public class TeddyBear {
         {
             elapsedShotSeconds = 0;
             firingDelay = getRandomFiringDelay();
-
-            // TODO firing
-//            Texture projectileSprite = Game1.GetProjectileSprite(projectileType);
-//            Vector2 center = drawRectangle.getCenter();
-//
-//            int projectileY = (int) (center.y + GameConstants.TEDDY_BEAR_PROJECTILE_OFFSET);
-//            Projectile projectile = new Projectile(projectileType, projectileSprite, drawRectangle.Center.X, projectileY, -GetProjectileYVelocity());
-//            Game1.AddProjectile(projectile);
-
-            // use instance to lower volume as it was horrible TODO sound
-            //SoundEffectInstance instance = shootSound.CreateInstance();
-            //instance.Volume = 0.2f;
-            //instance.Play();
+            shoot();
         }
-        // timer concept (for animations) introduced in Chapter 7
+    }
 
+    /**
+     * <p>Shoots a projectile from the center of the teddy bear.</p>
+     */
+    private void shoot() {
+        Texture projectileSprite = getProjectileSprite(PROJECTILE_TYPE);
+        Vector2 center = new Vector2();
+        drawRectangle.getCenter(center);
+
+        int projectileY = (int) (center.y + GameConstants.TEDDY_BEAR_PROJECTILE_OFFSET);
+        Projectile projectile = new Projectile(PROJECTILE_TYPE, projectileSprite, center.x, projectileY, -getProjectileYVelocity());
+        addProjectile(projectile);
+
+        // use instance to lower volume as it was horrible TODO sound
+        //SoundEffectInstance instance = shootSound.CreateInstance();
+        //instance.Volume = 0.2f;
+        //instance.Play();
     }
 
     /**
@@ -139,6 +145,22 @@ public class TeddyBear {
             drawRectangle.setRight(GameConstants.WINDOW_WIDTH);
             velocity.x *= -1;
             //bounceSound.Play();
+        }
+    }
+
+    /**
+     * <p>Gets the y velocity for the projectile being fired.</p>
+     * @return the projectile y velocity.
+     */
+    private float getProjectileYVelocity()
+    {
+        if (velocity.y > 0)
+        {
+            return velocity.y + GameConstants.TEDDY_BEAR_PROJECTILE_SPEED;
+        }
+        else
+        {
+            return GameConstants.TEDDY_BEAR_PROJECTILE_SPEED;
         }
     }
 

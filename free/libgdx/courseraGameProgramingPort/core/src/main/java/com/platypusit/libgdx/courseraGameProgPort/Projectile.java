@@ -10,6 +10,9 @@ import com.badlogic.gdx.math.Rectangle2D;
  */
 public class Projectile {
 
+    public static final String TEDDY_BEAR_PROJECTILE_TEXTURE_PATH = "graphics/teddybearprojectile.png";
+    public static final String FRENCH_FRIES_PROJECTILE_TEXTURE_PATH = "graphics/frenchfries.png";
+
     private boolean active = true;
     private ProjectileType type;
 
@@ -32,7 +35,7 @@ public class Projectile {
      * @param y         the y location for the center of the projectile
      * @param yVelocity the y velocity for the projectile
      */
-    public Projectile(ProjectileType type, Texture texture, int x, int y, float yVelocity) {
+    public Projectile(ProjectileType type, Texture texture, float x, float y, float yVelocity) {
         this.type = type;
         this.texture = texture;
         this.yVelocity = yVelocity;
