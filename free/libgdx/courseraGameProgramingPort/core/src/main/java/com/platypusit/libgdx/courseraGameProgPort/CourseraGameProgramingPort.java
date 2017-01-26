@@ -6,6 +6,7 @@ import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.math.Rectangle2D;
 import com.badlogic.gdx.math.Vector2;
 
 import java.util.ArrayList;
@@ -126,17 +127,6 @@ public class CourseraGameProgramingPort extends ApplicationAdapter {
 
         // create new bear
         TeddyBear newBear = new TeddyBear(teddyBearTexture, bearX, bearY, bearVelocity);
-
-        // make sure we don't spawn into a collision TODO
-//        List<Rectangle2D> collisionRectangles = GetCollisionRectangles();
-//        while(CollisionUtils.IsCollisionFree(newBear.DrawRectangle, collisionRectangles))
-//        {
-//            bearX = getRandomLocation(GameConstants.SpawnBorderSize, GameConstants.WindowWidth - GameConstants.SpawnBorderSize);
-//            bearY = getRandomLocation(GameConstants.SpawnBorderSize, GameConstants.WindowHeight - GameConstants.SpawnBorderSize);
-//
-//            newBear.X = bearX;
-//            newBear.Y = bearY;
-//        }
 
         // add new bear to list
         bears.add(newBear);
