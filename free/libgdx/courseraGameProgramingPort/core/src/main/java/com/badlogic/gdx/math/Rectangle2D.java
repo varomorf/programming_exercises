@@ -105,13 +105,4 @@ public class Rectangle2D extends Rectangle {
     public void setLeft(float x) {
         this.x = x;
     }
-
-    /**
-     * Calculates the center of the rectangle.
-     *
-     * @return A vector with the center position.
-     */
-    public Vector2 getCenter() {
-        return getCenter(new Vector2());
-    }
 }
