@@ -108,14 +108,14 @@ public class TeddyBear {
         if (drawRectangle.getTop() > GameConstants.WINDOW_HEIGHT)
         {
             // bounce off top
-            drawRectangle.y = 0;
+            drawRectangle.setTop(GameConstants.WINDOW_HEIGHT);
             velocity.y *= -1;
             //bounceSound.Play();
         }
         else if (drawRectangle.getBottom() <= 0)
         {
             // bounce off bottom
-            drawRectangle.y = GameConstants.WINDOW_HEIGHT - drawRectangle.height;
+            drawRectangle.setBottom(0);
             velocity.y *= -1;
             //bounceSound.Play();
         }
@@ -129,14 +129,14 @@ public class TeddyBear {
         if (drawRectangle.getLeft() < 0)
         {
             // bounce off left
-            drawRectangle.x = 0;
+            drawRectangle.setLeft(0);
             velocity.x *= -1;
             //bounceSound.Play();
         }
         else if (drawRectangle.getRight() > GameConstants.WINDOW_WIDTH)
         {
             // bounce off right
-            drawRectangle.x = GameConstants.WINDOW_WIDTH - drawRectangle.width;
+            drawRectangle.setRight(GameConstants.WINDOW_WIDTH);
             velocity.x *= -1;
             //bounceSound.Play();
         }
