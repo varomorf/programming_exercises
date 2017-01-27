@@ -77,10 +77,10 @@ public class Burger {
             // move burger using keyboard
             if (Gdx.input.isKeyPressed(Input.Keys.W))
             {
-                drawRectangle.y -= GameConstants.BURGER_MOVEMENT_AMOUNT;
+                drawRectangle.y += GameConstants.BURGER_MOVEMENT_AMOUNT;
             }else if (Gdx.input.isKeyPressed(Input.Keys.S))
             {
-                drawRectangle.y += GameConstants.BURGER_MOVEMENT_AMOUNT;
+                drawRectangle.y -= GameConstants.BURGER_MOVEMENT_AMOUNT;
             }
             if (Gdx.input.isKeyPressed(Input.Keys.A))
             {
