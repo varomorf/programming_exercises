@@ -21,16 +21,16 @@ public class Burger {
     private static final ProjectileType PROJECTILE_TYPE = ProjectileType.FRENCH_FRIES;
 
     // graphic and drawing info
-    Texture texture;
-    Rectangle2D drawRectangle;
-    Vector2 center = new Vector2();
+    private Texture texture;
+    private Rectangle2D drawRectangle;
+    private Vector2 center = new Vector2();
 
     // burger stats
-    int health = 100;
+    private int health = 100;
 
     // shooting support
-    boolean canShoot = true;
-    int elapsedCooldownSeconds = 0;
+    private boolean canShoot = true;
+    private float elapsedCooldownSeconds = 0;
 
     // sound effect TODO
     //SoundEffect shootSound;
@@ -111,6 +111,7 @@ public class Burger {
             if (!canShoot)
             {
                 elapsedCooldownSeconds += deltaSeconds;
+                System.out.println(elapsedCooldownSeconds);
 
                 if(elapsedCooldownSeconds >= GameConstants.BURGER_TOTAL_COOLDOWN_SECONDS || !Gdx.input.isKeyPressed(Input.Keys.SPACE))
                 {
