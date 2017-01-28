@@ -138,6 +138,17 @@ public class Burger {
         }
     }
 
+    /**
+     * Damages the burger an amount never reaching 0.
+     * @param amount Amount to be damaged;
+     */
+    public void damage(int amount) {
+        health -= amount;
+        if(health <= 0){
+            health = 0;
+        }
+    }
+
     public void draw(SpriteBatch batch) {
         batch.draw(texture, drawRectangle.x, drawRectangle.y);
     }
