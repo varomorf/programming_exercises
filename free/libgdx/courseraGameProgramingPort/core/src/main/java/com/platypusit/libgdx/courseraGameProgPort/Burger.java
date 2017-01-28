@@ -111,7 +111,6 @@ public class Burger {
             if (!canShoot)
             {
                 elapsedCooldownSeconds += deltaSeconds;
-                System.out.println(elapsedCooldownSeconds);
 
                 if(elapsedCooldownSeconds >= GameConstants.BURGER_TOTAL_COOLDOWN_SECONDS || !Gdx.input.isKeyPressed(Input.Keys.SPACE))
                 {
