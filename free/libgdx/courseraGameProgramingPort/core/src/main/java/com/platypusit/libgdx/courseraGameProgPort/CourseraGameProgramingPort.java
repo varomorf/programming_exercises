@@ -5,6 +5,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector2;
 
@@ -24,6 +25,15 @@ public class CourseraGameProgramingPort extends ApplicationAdapter {
     private List<TeddyBear> bears = new ArrayList<>();
     private static List<Projectile> projectiles = new ArrayList<>();
 
+    private BitmapFont bitmapFont;
+
+    // scoring support
+    private int score = 0;
+    private String scoreString = GameConstants.SCORE_PREFIX + 0;
+
+    // health support
+    private String healthString = GameConstants.HEALTH_PREFIX + GameConstants.BURGER_INITIAL_HEALTH;
+    private boolean burgerDead = false;
 
     /**
      * <p>Gets the projectile sprite for the given projectile type.</p>
@@ -54,10 +64,14 @@ public class CourseraGameProgramingPort extends ApplicationAdapter {
 	public void create () {
 		batch = new SpriteBatch();
 
+		// load textures
 		Texture burgerTexture = new Texture(Burger.TEXTURE_PATH);
 		teddyBearTexture = new Texture(TeddyBear.TEXTURE_PATH);
         teddyBearProjectileSprite = new Texture(Projectile.TEDDY_BEAR_PROJECTILE_TEXTURE_PATH);
         frenchFriesSprite = new Texture(Projectile.FRENCH_FRIES_PROJECTILE_TEXTURE_PATH);
+
+        // load fonts
+        bitmapFont = new BitmapFont();
 
         // add burger object calculating x and y (no need to center sprite as Burger constructor does it)
         int burgerX = WINDOW_WIDTH / 2;
@@ -106,6 +120,10 @@ public class CourseraGameProgramingPort extends ApplicationAdapter {
             projectile.draw(batch);
         }
 
+        // draw score and health
+        bitmapFont.draw(batch, healthString, HEALTH_LOCATION.x, HEALTH_LOCATION.y);
+        bitmapFont.draw(batch, scoreString, SCORE_LOCATION.x, SCORE_LOCATION.y);
+
         batch.end();
 	}
 
@@ -131,6 +149,25 @@ public class CourseraGameProgramingPort extends ApplicationAdapter {
         // add new bear to list
         bears.add(newBear);
 	}
+
+    /**
+     * Updates the health string after damaging.
+     * @param amount The amount of damage to the burger.
+     */
+    private void burgerDamaged(int amount)
+    {
+        burger.setHealth(-amount);
+        healthString = GameConstants.HEALTH_PREFIX + burger.getHealth();
+        //burgerDamage.Play(); TODO sound
+    }
+
+    /**
+     * Updates the score string.
+     */
+    private void updateScoreString()
+    {
+        scoreString = GameConstants.SCORE_PREFIX + score;
+    }
 
     /**
      * Gets a random location using the given min and range
