@@ -88,7 +88,7 @@ public class TeddyBear {
         Vector2 center = new Vector2();
         drawRectangle.getCenter(center);
 
-        int projectileY = (int) (center.y + GameConstants.TEDDY_BEAR_PROJECTILE_OFFSET);
+        int projectileY = (int) (center.y - GameConstants.TEDDY_BEAR_PROJECTILE_OFFSET);
         Projectile projectile = new Projectile(PROJECTILE_TYPE, projectileSprite, center.x, projectileY, -getProjectileYVelocity());
         addProjectile(projectile);
 

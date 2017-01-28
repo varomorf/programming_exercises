@@ -16,9 +16,9 @@ public class GameConstants {
     public static final int WINDOW_HEIGHT = 600;
 
     // projectile characteristics
-    public static final int TEDDY_BEAR_PROJECTILE_SPEED = 300;
+    public static final int TEDDY_BEAR_PROJECTILE_SPEED = 250;
     public static final int TEDDY_BEAR_PROJECTILE_DAMAGE = 5;
-    public static final int TEDDY_BEAR_PROJECTILE_OFFSET = 20;
+    public static final int TEDDY_BEAR_PROJECTILE_OFFSET = 30;
     public static final int FRENCH_FRIES_PROJECTILE_SPEED = 400;
     public static final int FRENCH_FRIES_PROJECTILE_DAMAGE = 5;
     public static final int FRENCH_FRIES_PROJECTILE_OFFSET = 10;
