@@ -2,6 +2,7 @@ package com.platypusit.libgdx.courseraGameProgPort;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
+import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Rectangle2D;
@@ -32,19 +33,19 @@ public class Burger {
     private boolean canShoot = true;
     private float elapsedCooldownSeconds = 0;
 
-    // sound effect TODO
-    //SoundEffect shootSound;
+    private Sound shootSound;
 
     /**
      * <p>Creates a new Burger specifying its texture and position.</p>
-     * TODO sound
      *
-     * @param texture The burger's texture.
-     * @param x       The x position.
-     * @param y       The y position.
+     * @param texture    The burger's texture.
+     * @param x          The x position.
+     * @param y          The y position.
+     * @param shootSound The sound for the shooting.
      */
-    public Burger(Texture texture, int x, int y) {
+    public Burger(Texture texture, int x, int y, Sound shootSound) {
         this.texture = texture;
+        this.shootSound = shootSound;
 
         drawRectangle = new Rectangle2D(0, 0, texture.getWidth(), texture.getHeight());
         drawRectangle.setCenter(x, y);
@@ -58,62 +59,43 @@ public class Burger {
         return health;
     }
 
-    public void setHealth(int health) {
-        if (health < 0) {
-            this.health = 0;
-        }
-
-        this.health = health;
-    }
-
     /**
      * Updates the burger's location
+     *
      * @param deltaSeconds delta time in seconds
      */
     public void update(float deltaSeconds) {
         // burger should only respond to input if it still has health
-        if(health > 0)
-        {
+        if (health > 0) {
             // move burger using keyboard
-            if (Gdx.input.isKeyPressed(Input.Keys.W))
-            {
+            if (Gdx.input.isKeyPressed(Input.Keys.W)) {
                 drawRectangle.y += GameConstants.BURGER_MOVEMENT_AMOUNT;
-            }else if (Gdx.input.isKeyPressed(Input.Keys.S))
-            {
+            } else if (Gdx.input.isKeyPressed(Input.Keys.S)) {
                 drawRectangle.y -= GameConstants.BURGER_MOVEMENT_AMOUNT;
             }
-            if (Gdx.input.isKeyPressed(Input.Keys.A))
-            {
+            if (Gdx.input.isKeyPressed(Input.Keys.A)) {
                 drawRectangle.x -= GameConstants.BURGER_MOVEMENT_AMOUNT;
-            } else if (Gdx.input.isKeyPressed(Input.Keys.D))
-            {
+            } else if (Gdx.input.isKeyPressed(Input.Keys.D)) {
                 drawRectangle.x += GameConstants.BURGER_MOVEMENT_AMOUNT;
             }
 
             // clamp burger in window
-            if(drawRectangle.x < 0)
-            {
+            if (drawRectangle.x < 0) {
                 drawRectangle.x = 0;
-            }else if(drawRectangle.getRight() > GameConstants.WINDOW_WIDTH)
-            {
+            } else if (drawRectangle.getRight() > GameConstants.WINDOW_WIDTH) {
                 drawRectangle.x = GameConstants.WINDOW_WIDTH - drawRectangle.width;
             }
-            if (drawRectangle.y < 0)
-            {
+            if (drawRectangle.y < 0) {
                 drawRectangle.y = 0;
-            }
-            else if (drawRectangle.getBottom() > GameConstants.WINDOW_HEIGHT)
-            {
+            } else if (drawRectangle.getBottom() > GameConstants.WINDOW_HEIGHT) {
                 drawRectangle.y = GameConstants.WINDOW_HEIGHT - drawRectangle.height;
             }
 
             // update shooting allowed
-            if (!canShoot)
-            {
+            if (!canShoot) {
                 elapsedCooldownSeconds += deltaSeconds;
 
-                if(elapsedCooldownSeconds >= GameConstants.BURGER_TOTAL_COOLDOWN_SECONDS || !Gdx.input.isKeyPressed(Input.Keys.SPACE))
-                {
+                if (elapsedCooldownSeconds >= GameConstants.BURGER_TOTAL_COOLDOWN_SECONDS || !Gdx.input.isKeyPressed(Input.Keys.SPACE)) {
                     canShoot = true;
                     elapsedCooldownSeconds = 0;
                 }
@@ -122,8 +104,7 @@ public class Burger {
             // timer concept (for animations) introduced in Chapter 7
 
             // shoot if appropriate
-            if (canShoot && Gdx.input.isKeyPressed(Input.Keys.SPACE))
-            {
+            if (canShoot && Gdx.input.isKeyPressed(Input.Keys.SPACE)) {
                 canShoot = false;
 
                 Texture projectileSprite = getProjectileSprite(PROJECTILE_TYPE);
@@ -132,19 +113,19 @@ public class Burger {
                 float projectileY = center.y + GameConstants.FRENCH_FRIES_PROJECTILE_OFFSET;
                 Projectile projectile = new Projectile(PROJECTILE_TYPE, projectileSprite, center.x, projectileY, GameConstants.FRENCH_FRIES_PROJECTILE_SPEED);
                 addProjectile(projectile);
-                //TODO sound
-                //shootSound.Play();
+                shootSound.play();
             }
         }
     }
 
     /**
      * Damages the burger an amount never reaching 0.
+     *
      * @param amount Amount to be damaged;
      */
     public void damage(int amount) {
         health -= amount;
-        if(health <= 0){
+        if (health <= 0) {
             health = 0;
         }
     }

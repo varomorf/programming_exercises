@@ -2,6 +2,7 @@ package com.platypusit.libgdx.courseraGameProgPort;
 
 import com.badlogic.gdx.ApplicationAdapter;
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
@@ -37,6 +38,14 @@ public class CourseraGameProgramingPort extends ApplicationAdapter {
     private String healthString = GameConstants.HEALTH_PREFIX + GameConstants.BURGER_INITIAL_HEALTH;
     private boolean burgerDead = false;
 
+    // sound effects
+    Sound burgerDamage;
+    Sound burgerDeath;
+    Sound burgerShot;
+    Sound explosion;
+    Sound teddyBounce;
+    Sound teddyShot;
+
     /**
      * <p>Gets the projectile sprite for the given projectile type.</p>
      *
@@ -71,13 +80,21 @@ public class CourseraGameProgramingPort extends ApplicationAdapter {
         teddyBearProjectileSprite = new Texture(Projectile.TEDDY_BEAR_PROJECTILE_TEXTURE_PATH);
         frenchFriesSprite = new Texture(Projectile.FRENCH_FRIES_PROJECTILE_TEXTURE_PATH);
 
+        // load audio content
+        burgerDamage = Gdx.audio.newSound(Gdx.files.internal("audio/BurgerDamage.wav"));
+        burgerDeath = Gdx.audio.newSound(Gdx.files.internal("audio/BurgerDeath.wav"));
+        burgerShot = Gdx.audio.newSound(Gdx.files.internal("audio/BurgerShot.wav"));
+        explosion = Gdx.audio.newSound(Gdx.files.internal("audio/Explosion.wav"));
+        teddyBounce = Gdx.audio.newSound(Gdx.files.internal("audio/TeddyBounce.wav"));
+        teddyShot = Gdx.audio.newSound(Gdx.files.internal("audio/TeddyShot.wav"));
+
         // load fonts
         bitmapFont = new BitmapFont();
 
         // add burger object calculating x and y (no need to center sprite as Burger constructor does it)
         int burgerX = WINDOW_WIDTH / 2;
         int burgerY = WINDOW_HEIGHT / 8;
-        burger = new Burger(burgerTexture, burgerX, burgerY);
+        burger = new Burger(burgerTexture, burgerX, burgerY, burgerShot);
 
         // spawn bears
         for (int i = 0; i < MAX_BEARS; i++) {
