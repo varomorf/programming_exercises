@@ -55,6 +55,18 @@ public class TeddyBear {
         firingDelay = getRandomFiringDelay();
     }
 
+    public void setActive(boolean active) {
+        this.active = active;
+    }
+
+    public boolean isActive() {
+        return active;
+    }
+
+    public Rectangle2D getCollisionRectangle(){
+        return drawRectangle;
+    }
+
     /**
      * Updates the teddy bear's location, bouncing if necessary. Also has the teddy bear fire a projectile when it's time to.
      * @param deltaSeconds delta time in seconds
@@ -171,5 +183,4 @@ public class TeddyBear {
     protected float getRandomFiringDelay() {
         return RandomNumberGenerator.nextFloat(BEAR_MIN_FIRING_DELAY, BEAR_FIRING_RATE_RANGE);
     }
-
 }
