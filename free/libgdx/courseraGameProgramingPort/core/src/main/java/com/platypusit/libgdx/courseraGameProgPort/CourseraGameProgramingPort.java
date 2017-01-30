@@ -217,7 +217,7 @@ public class CourseraGameProgramingPort extends ApplicationAdapter {
         Vector2 bearVelocity = new Vector2(velX, velY);
 
         // create new bear
-        TeddyBear newBear = new TeddyBear(teddyBearTexture, bearX, bearY, bearVelocity);
+        TeddyBear newBear = new TeddyBear(teddyBearTexture, bearX, bearY, bearVelocity, teddyBounce, teddyShot);
 
         // add new bear to list
         bears.add(newBear);
@@ -231,7 +231,7 @@ public class CourseraGameProgramingPort extends ApplicationAdapter {
         if(burger.getHealth() <= 0 && !burgerDead)
         {
             burgerDead = true;
-            //burgerDeath.Play(); TODO sound
+            burgerDeath.play();
         }
     }
 
@@ -256,7 +256,7 @@ public class CourseraGameProgramingPort extends ApplicationAdapter {
     private void burgerDamaged(int amount) {
         burger.damage(amount);
         healthString = GameConstants.HEALTH_PREFIX + burger.getHealth();
-        //burgerDamage.Play(); TODO sound
+        burgerDamage.play();
     }
 
     /**

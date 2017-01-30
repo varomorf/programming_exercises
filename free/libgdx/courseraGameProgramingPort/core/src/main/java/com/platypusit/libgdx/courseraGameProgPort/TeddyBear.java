@@ -1,5 +1,6 @@
 package com.platypusit.libgdx.courseraGameProgPort;
 
+import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Rectangle2D;
@@ -34,9 +35,8 @@ public class TeddyBear {
     private float elapsedShotSeconds = 0;
     private float firingDelay;
 
-    // sound effects TODO
-    //private SoundEffect bounceSound;
-    //private SoundEffect shootSound;
+    private Sound bounceSound;
+    private Sound shootSound;
 
     /**
      * Constructs a teddy bear centered on the given x and y with the given velocity.
@@ -45,9 +45,11 @@ public class TeddyBear {
      * @param y the y location of the center of the teddy bear.
      * @param velocity the velocity of the teddy bear.
      */
-    public TeddyBear(Texture texture, int x, int y, Vector2 velocity) {
+    public TeddyBear(Texture texture, int x, int y, Vector2 velocity, Sound bounceSound, Sound shootSound) {
         this.texture = texture;
         this.velocity = velocity;
+        this.bounceSound = bounceSound;
+        this.shootSound = shootSound;
 
         drawRectangle = new Rectangle2D(0, 0, texture.getWidth(), texture.getHeight());
         drawRectangle.setCenter(x, y);
@@ -103,11 +105,7 @@ public class TeddyBear {
         int projectileY = (int) (center.y - GameConstants.TEDDY_BEAR_PROJECTILE_OFFSET);
         Projectile projectile = new Projectile(PROJECTILE_TYPE, projectileSprite, center.x, projectileY, -getProjectileYVelocity());
         addProjectile(projectile);
-
-        // use instance to lower volume as it was horrible TODO sound
-        //SoundEffectInstance instance = shootSound.CreateInstance();
-        //instance.Volume = 0.2f;
-        //instance.Play();
+        shootSound.play(0.2f);
     }
 
     /**
@@ -128,14 +126,14 @@ public class TeddyBear {
             // bounce off top
             drawRectangle.setTop(GameConstants.WINDOW_HEIGHT);
             velocity.y *= -1;
-            //bounceSound.Play();
+            bounceSound.play();
         }
         else if (drawRectangle.getBottom() <= 0)
         {
             // bounce off bottom
             drawRectangle.setBottom(0);
             velocity.y *= -1;
-            //bounceSound.Play();
+            bounceSound.play();
         }
     }
 
@@ -149,14 +147,14 @@ public class TeddyBear {
             // bounce off left
             drawRectangle.setLeft(0);
             velocity.x *= -1;
-            //bounceSound.Play();
+            bounceSound.play();
         }
         else if (drawRectangle.getRight() > GameConstants.WINDOW_WIDTH)
         {
             // bounce off right
             drawRectangle.setRight(GameConstants.WINDOW_WIDTH);
             velocity.x *= -1;
-            //bounceSound.Play();
+            bounceSound.play();
         }
     }
 
