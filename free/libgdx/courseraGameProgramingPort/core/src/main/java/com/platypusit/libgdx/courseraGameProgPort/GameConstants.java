@@ -42,7 +42,7 @@ public class GameConstants {
     public static final int EXPLOSION_FRAMES_PER_ROW = 3;
     public static final int EXPLOSION_NUM_ROWS = 3;
     public static final int EXPLOSION_NUM_FRAMES = 9;
-    public static final int EXPLOSION_TOTAL_FRAME_MILLISECONDS = 10;
+    public static final float EXPLOSION_TOTAL_FRAME_SECONDS = 0.01f;
 
     // display support
     private static final int DisplayOffset = 35;

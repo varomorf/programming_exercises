@@ -23,10 +23,13 @@ public class CourseraGameProgramingPort extends ApplicationAdapter {
     private Texture teddyBearTexture;
     private static Texture teddyBearProjectileSprite;
     private static Texture frenchFriesSprite;
+    private static Texture explosionSpriteStrip;
+
 
     private Burger burger;
     private List<TeddyBear> bears = new ArrayList<>();
     private static List<Projectile> projectiles = new ArrayList<>();
+    List<Explosion> explosions = new ArrayList<>();
 
     private BitmapFont bitmapFont;
 
@@ -79,6 +82,7 @@ public class CourseraGameProgramingPort extends ApplicationAdapter {
         teddyBearTexture = new Texture(TeddyBear.TEXTURE_PATH);
         teddyBearProjectileSprite = new Texture(Projectile.TEDDY_BEAR_PROJECTILE_TEXTURE_PATH);
         frenchFriesSprite = new Texture(Projectile.FRENCH_FRIES_PROJECTILE_TEXTURE_PATH);
+        explosionSpriteStrip = new Texture(Explosion.EXPLOSION_TEXTURE_PATH);
 
         // load audio content
         burgerDamage = Gdx.audio.newSound(Gdx.files.internal("audio/BurgerDamage.wav"));
@@ -117,6 +121,10 @@ public class CourseraGameProgramingPort extends ApplicationAdapter {
         }
         for (Projectile projectile : projectiles) {
             projectile.update(deltaSeconds);
+        }
+        for (Explosion explosion : explosions)
+        {
+            explosion.update(deltaSeconds);
         }
 
         // check and resolve collisions between burger and teddy bears
@@ -173,6 +181,15 @@ public class CourseraGameProgramingPort extends ApplicationAdapter {
             }
         }
 
+        // clean out finished explosions
+        for (int i = explosions.size() - 1; i >= 0; i--)
+        {
+            if (explosions.get(i).isFinished())
+            {
+                explosions.remove(i);
+            }
+        }
+
         // check game end
         checkBurgerKill();
     }
@@ -192,6 +209,10 @@ public class CourseraGameProgramingPort extends ApplicationAdapter {
 
         for (Projectile projectile : projectiles) {
             projectile.draw(batch);
+        }
+
+        for (Explosion explosion : explosions) {
+            explosion.draw(batch);
         }
 
         // draw score and health
@@ -242,10 +263,10 @@ public class CourseraGameProgramingPort extends ApplicationAdapter {
     private void explodeTeddy(TeddyBear bear)
     {
         bear.setActive(false);
-        //TODO explosion
-//        Point bearCenter = bear.CollisionRectangle.Center;
-//        Explosion explosion = new Explosion(explosionSpriteStrip, bearCenter.X, bearCenter.Y, this.explosion);
-//        explosions.Add(explosion);
+        Vector2 center = new Vector2();
+        bear.getCollisionRectangle().getCenter(center);
+        Explosion explosion = new Explosion(explosionSpriteStrip, center.x, center.y, this.explosion);
+        explosions.add(explosion);
     }
 
     /**
