@@ -11,7 +11,7 @@ function preload() {
 
     //game.load.baseURL = 'http://examples.phaser.io/assets/';
     //game.load.baseURL = 'https://github.com/varomorf/programming_exercises/raw/master/miriadax/appmovil/modulo4/assets/';
-    game.load.crossOrigin = 'Anonymous';
+    //game.load.crossOrigin = 'Anonymous';
 
     //game.load.image('zombie', 'sprites/zombie-1.png');
     game.load.atlas('zombie', 'assets/sprites/zombie1.png', 'assets/sprites/zombie1.json');
@@ -33,7 +33,7 @@ function create() {
 
     var zombie = game.add.sprite(0, 0, 'zombie');
 
-    var walk = zombie.animations.add('walk', Phaser.Animation.generateFrameNames('sprite', 1, 11), 1, true);
+    var walk = zombie.animations.add('walk', Phaser.Animation.generateFrameNames('sprite', 1, 11), 5, true);
 
     zombie.animations.play('walk');
 
