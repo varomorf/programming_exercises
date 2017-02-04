@@ -16,6 +16,8 @@ function inicio(){
 
     var MAX_COLLISIONS = 3;
 
+    var BALL_SPEED_VARIANT = 75;
+
     var timeCounter = 0;
     var timeText;
     var hearts;
@@ -77,7 +79,6 @@ function inicio(){
 
     function update() {
         // move ball
-        console.log('Moving ball at:' + speedX + ',' + speedY);
         ball.body.velocity.setTo(speedX, speedY);
 
         // make zombies go for ball
@@ -188,7 +189,6 @@ function inicio(){
         gameLostText.anchor.y = 0.5;
         game.physics.arcade.isPaused = true;
         endSound.loopFull();
-        setTimeout(restartGame, 10000);
     }
 
     function restartGame(){
@@ -231,17 +231,14 @@ function inicio(){
         var agitacionY = datosAceleracion.y > 10;
 
         if (agitacionX || agitacionY){
-          setTimeout(app.recomienza, 1000);
+            console.log("agitacion");
+          setTimeout(restartGame, 1000);
         }
     }
 
-    function recomienza(){
-        document.location.reload(true);
-    }
-
     function registraDireccion(datosAceleracion){
-        speedX = -1 * datosAceleracion.x * 75;
-        speedY = datosAceleracion.y * 75;
+        speedX = -1 * datosAceleracion.x * BALL_SPEED_VARIANT;
+        speedY = datosAceleracion.y * BALL_SPEED_VARIANT;
     }
 
     vigilaSensores();
