@@ -6,7 +6,7 @@ var game = new Phaser.Game(width, height, Phaser.CANVAS, 'game', { preload: prel
 var timeCounter = 0;
 var timeText = '';
 
-var zombies = [];
+var zombies;
 var ball = null;
 
 var zombieSpawnTimer = 0;
@@ -26,6 +26,8 @@ function preload() {
 
 function create() {
     game.physics.startSystem(Phaser.Physics.ARCADE);
+
+    zombies = game.add.physicsGroup(Phaser.Physics.ARCADE);
 
     var style = { font: "32px Arial", fill: "#FFF" };
     timeText = game.add.text(10, 10, '00:00', style);
@@ -77,7 +79,7 @@ function spawnZombie(){
     zombie.speed = game.rnd.integerInRange(zombieMinSpeed, zombieMaxSpeed);
     console.log(zombie.speed);
 
-    zombies.push(zombie);
+    zombies.add(zombie);
 }
 
 function prepareZombieWalkAnimation(aZombie){
