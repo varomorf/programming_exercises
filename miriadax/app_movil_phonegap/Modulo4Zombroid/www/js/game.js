@@ -19,6 +19,9 @@ var ZOMBIE_SPEED_INC = 10;
 var zombieMinSpeed = ZOMBIE_MIN_SPEED_INITIAL;
 var zombieMaxSpeed = ZOMBIE_MAX_SPEED_INITIAL;
 
+var collisionNum = 0;
+var MAX_COLLISIONS = 3;
+
 function preload() {
     game.load.image('ball', 'assets/sprites/shinyball.png');
     game.load.atlas('zombie', 'assets/sprites/zombie1.png', 'assets/sprites/zombie1.json');
@@ -40,6 +43,7 @@ function create() {
 }
 
 function update() {
+    // move ball
     game.physics.arcade.moveToPointer(ball, 400);
     //  if it's overlapping the mouse, don't move any more
     if (Phaser.Rectangle.contains(ball.body, game.input.x, game.input.y))
@@ -47,10 +51,15 @@ function update() {
         ball.body.velocity.setTo(0, 0);
     }
 
+    // make zombies go for ball
     zombies.forEach(function(zombie){
         zombie.rotation = game.physics.arcade.moveToObject(zombie, ball, zombie.speed);
     });
 
+    // check collisions between zombies and ball
+    game.physics.arcade.collide(ball, zombies, collisionWithZombie);
+
+    // spawn new zombies when timer goes off
     zombieSpawnTimer += game.time.elapsed;
     if(zombieSpawnTimer >= zombieSpawnTimerLimit){
         zombieSpawnTimer = 0;
@@ -114,4 +123,11 @@ function updateTime(){
     text += seconds;
 
     timeText.setText(text);
+}
+
+function collisionWithZombie(ball, zombie){
+    zombies.remove(zombie);
+
+    collisionNum++;
+    console.log('Collision: ' + collisionNum);
 }
