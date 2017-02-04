@@ -4,7 +4,7 @@ var height = 600;
 var game = new Phaser.Game(width, height, Phaser.CANVAS, 'game', { preload: preload, create: create, update: update });
 
 var timeCounter = 0;
-var timeText = '';
+var timeText;
 
 var zombies;
 var ball = null;
@@ -21,6 +21,8 @@ var zombieMaxSpeed = ZOMBIE_MAX_SPEED_INITIAL;
 
 var collisionNum = 0;
 var MAX_COLLISIONS = 3;
+
+var gameLostText;
 
 function preload() {
     game.load.image('ball', 'assets/sprites/shinyball.png');
@@ -140,5 +142,9 @@ function collisionWithZombie(ball, zombie){
 }
 
 function gameEnd(){
+    var style = { font: "48px Arial", fill: "#8A0707", fontWeight: 'bold', backgroundColor: '#FFF' };
+    gameLostText = game.add.text(game.world.centerX, game.world.centerY, 'YOU LOOSE', style);
+    gameLostText.anchor.x = 0.5;
+    gameLostText.anchor.y = 0.5;
     game.physics.arcade.isPaused = true;
 }
