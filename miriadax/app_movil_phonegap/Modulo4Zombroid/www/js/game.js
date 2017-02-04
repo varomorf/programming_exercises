@@ -20,6 +20,7 @@ var zombieMinSpeed = ZOMBIE_MIN_SPEED_INITIAL;
 var zombieMaxSpeed = ZOMBIE_MAX_SPEED_INITIAL;
 
 var brainsSound;
+var hitSound;
 
 var collisionNum = 0;
 var MAX_COLLISIONS = 3;
@@ -30,6 +31,7 @@ function preload() {
     game.load.image('ball', 'assets/sprites/shinyball.png');
     game.load.atlas('zombie', 'assets/sprites/zombie1.png', 'assets/sprites/zombie1.json');
     game.load.audio('brainsSound', 'assets/audio/sfx/brains.mp3');
+    game.load.audio('hitSound', 'assets/audio/sfx/hit.mp3');
 }
 
 function create() {
@@ -47,6 +49,7 @@ function create() {
     game.time.events.loop(Phaser.Timer.SECOND, updateTime, this);
 
     brainsSound = game.add.audio('brainsSound');
+    hitSound = game.add.audio('hitSound');
 }
 
 function update() {
@@ -138,6 +141,7 @@ function updateTime(){
 }
 
 function collisionWithZombie(ball, zombie){
+    hitSound.play();
     zombies.remove(zombie);
 
     collisionNum++;
