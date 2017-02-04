@@ -21,6 +21,7 @@ var zombieMaxSpeed = ZOMBIE_MAX_SPEED_INITIAL;
 
 var brainsSound;
 var hitSound;
+var endSound;
 
 var collisionNum = 0;
 var MAX_COLLISIONS = 3;
@@ -32,6 +33,7 @@ function preload() {
     game.load.atlas('zombie', 'assets/sprites/zombie1.png', 'assets/sprites/zombie1.json');
     game.load.audio('brainsSound', 'assets/audio/sfx/brains.mp3');
     game.load.audio('hitSound', 'assets/audio/sfx/hit.mp3');
+    game.load.audio('endSound', 'assets/audio/music/end.mp3');
 }
 
 function create() {
@@ -50,6 +52,7 @@ function create() {
 
     brainsSound = game.add.audio('brainsSound');
     hitSound = game.add.audio('hitSound');
+    endSound = game.add.audio('endSound');
 }
 
 function update() {
@@ -157,4 +160,5 @@ function gameEnd(){
     gameLostText.anchor.x = 0.5;
     gameLostText.anchor.y = 0.5;
     game.physics.arcade.isPaused = true;
+    endSound.loopFull();
 }
