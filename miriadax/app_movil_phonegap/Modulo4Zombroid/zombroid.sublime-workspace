@@ -1,0 +1,368 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"ZOM",
+				"ZOMBIE_MIN_SPEED_INC"
+			],
+			[
+				"zom",
+				"zombieMinSpeed"
+			],
+			[
+				"ran",
+				"randomPos"
+			],
+			[
+				"in",
+				"iniciaBotones"
+			],
+			[
+				"cl",
+				"className"
+			],
+			[
+				"fun",
+				"function"
+			],
+			[
+				"make",
+				"makeDark"
+			],
+			[
+				"me",
+				"makeLight"
+			],
+			[
+				"dar",
+				"darkButton"
+			],
+			[
+				"li",
+				"lightButton"
+			]
+		]
+	},
+	"buffers":
+	[
+		{
+			"file": "www/js/game.js",
+			"settings":
+			{
+				"buffer_size": 2170,
+				"line_ending": "Windows"
+			}
+		}
+	],
+	"build_system": "",
+	"build_system_choices":
+	[
+	],
+	"build_varint": "",
+	"command_palette":
+	{
+		"height": 35.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 392.0
+	},
+	"console":
+	{
+		"height": 0.0,
+		"history":
+		[
+		]
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"expanded_folders":
+	[
+		"/C/Users/Alvaro/projects/github/programming_exercises/miriadax/app_movil_phonegap/Modulo4Zombroid",
+		"/C/Users/Alvaro/projects/github/programming_exercises/miriadax/app_movil_phonegap/Modulo4Zombroid/www",
+		"/C/Users/Alvaro/projects/github/programming_exercises/miriadax/app_movil_phonegap/Modulo4Zombroid/www/js"
+	],
+	"file_history":
+	[
+		"/C/Users/Alvaro/projects/github/programming_exercises/miriadax/app_movil_phonegap/Modulo4Zombroid/www/index.html",
+		"/C/Users/Alvaro/projects/github/programming_exercises/miriadax/app_movil_phonegap/Modulo4Zombroid/www/js/game.js",
+		"/C/Users/Alvaro/projects/github/programming_exercises/miriadax/app_movil_phonegap/Modulo4Zombroid/www/assets/sprites/zombie1.json",
+		"/C/Users/Alvaro/projects/github/programming_exercises/coursera/game-programming/assignments/ProgrammingStep1/GameProject/GameProject/Explosion.cs",
+		"/C/Users/Alvaro/projects/github/programming_exercises/miriadax/appmovil/modulo4/index.html",
+		"/C/Users/Alvaro/projects/github/programming_exercises/miriadax/app_movil_phonegap/modulo1/Ejercicio1-1/www/index.html",
+		"/C/Users/Alvaro/projects/github/programming_exercises/miriadax/app_movil_phonegap/modulo1/Ejercicio1-1/www/js/fastclick.js",
+		"/C/Users/Alvaro/projects/github/programming_exercises/miriadax/app_movil_phonegap/modulo1/Ejercicio1-1/www/css/gestures.css",
+		"/C/Users/Alvaro/projects/github/programming_exercises/miriadax/app_movil_phonegap/modulo1/Ejercicio1-1/www/js/gestures.js",
+		"/C/Users/Alvaro/projects/github/programming_exercises/coursera/game-programming/assignments/ProgrammingStep1/GameProject/GameProject/Game1.cs",
+		"/C/Users/Alvaro/projects/github/programming_exercises/miriadax/app_movil_phonegap/modulo1/Ejercicio1-1/www/js/hammer.min.js",
+		"/C/Program Files (x86)/Mount&Blade Warband/Modules/Native/item_kinds1.txt",
+		"/C/Users/Alvaro/projects/github/programming_exercises/coursera/game-programming/assignments/Programming Assignment 5/Programming Assignment 5/Game1.cs",
+		"/C/Users/Alvaro/Documents/Assassin's Creed III/Assassin3.ini",
+		"/C/Users/Alvaro/projects/github/electron-quick-start/package.json",
+		"/C/Users/Alvaro/Videos/Farming Simulator 15 [MULTI][PCDVD][CODEX][WwW.GamesTorrents.CoM]/Leeme.txt",
+		"/C/Users/Alvaro/Videos/Farming.Simulator.17-RELOADED/RARBG.com.txt",
+		"/C/Program Files (x86)/UnRealWorld3.32/menudef_additional.txt",
+		"/C/Program Files (x86)/UnRealWorld3.32/diy_glossary.txt",
+		"/C/Users/Alvaro/projects/github/electrogram/package.json",
+		"/C/Users/Alvaro/projects/github/electrogram/src/app/app.ts",
+		"/C/Users/Alvaro/projects/github/electrogram/src/app/canvasService.ts",
+		"/C/Program Files (x86)/UnRealWorld3.32/biy_glossary.txt",
+		"/C/Program Files (x86)/UnRealWorld3.32/debug_uflora.txt",
+		"/C/Program Files (x86)/UnRealWorld3.32/create_objects.txt",
+		"/C/Program Files (x86)/UnRealWorld3.32/objsym.txt",
+		"/C/Program Files (x86)/UnRealWorld3.32/urw_ini.txt",
+		"/C/Program Files (x86)/UnRealWorld3.32/TIMBERP.RIT",
+		"/C/Program Files (x86)/UnRealWorld3.32/flora_herbs.txt",
+		"/C/Users/Alvaro/projects/github/PhotOrganizer/app/app.ts",
+		"/C/Users/Alvaro/projects/github/PhotOrganizer/app/components/imageFile.ts",
+		"/C/entorno/apache-tomcat-8.5.4/conf/server.xml",
+		"/C/entorno/apache-tomcat-8.5.4/conf/context.xml",
+		"/C/entorno/apache-tomcat-8.5.4/logs/catalina.2016-08-21.log",
+		"/C/entorno/apache-tomcat-8.5.4/logs/localhost.2016-08-21.log",
+		"/C/entorno/apache-tomcat-8.5.4/logs/catalina.2016-08-23.log",
+		"/C/entorno/apache-tomcat-8.5.4/logs/localhost.2016-08-23.log",
+		"/C/Users/Alvaro/projects/github/electrogram/src/customDefinitions.d.ts",
+		"/C/Users/Alvaro/projects/github/electrogram/src/package.json",
+		"/C/Users/Alvaro/projects/PhotOrganizer/PhotOrganizer.iml",
+		"/C/Users/Alvaro/Downloads/Racun.pdf",
+		"/C/entorno/apache-tomcat-8.5.4/conf/tomcat-users.xml",
+		"/C/Users/Alvaro/projects/baeldung/tutorials/spring-jpa-jndi/pom.xml",
+		"/C/Program Files/PostgreSQL/9.5/data/pg_hba.conf",
+		"/C/entorno/apache-tomcat-8.5.4/conf/web.xml",
+		"/C/Users/Alvaro/projects/baeldung/tutorials/mocks/jmockit/pom.xml",
+		"/C/Users/Alvaro/projects/baeldung/tutorials/mocks/mock-comparisons/pom.xml",
+		"/C/Users/Alvaro/projects/baeldung/tutorials/apache-fop/pom.xml",
+		"/C/Users/Alvaro/projects/baeldung/tutorials/mocks/pom.xml",
+		"/C/Users/Alvaro/projects/baeldung/tutorials/pom.xml",
+		"/C/Users/Alvaro/projects/baeldung/tutorials/apache-fop/src/test/java/org/baeldung/java/ApacheFOPHeroldTest.java",
+		"/C/Users/Alvaro/.gitconfig",
+		"/C/Users/Alvaro/.bashrc",
+		"/C/Users/Alvaro/Downloads/neoscavenger/0/neogame.xml",
+		"/C/Users/Alvaro/projects/baeldung/tutorials/mocks/README.md",
+		"/C/Users/Alvaro/projects/baeldung/tutorials/mock-comparisons/README.md",
+		"/C/Users/Alvaro/.android/ddms.cfg",
+		"/C/Users/Alvaro/.AndroidStudio1.5/config/inspection/Default.xml",
+		"/C/Users/Alvaro/.AndroidStudio1.5/config/port",
+		"/C/Users/Alvaro/.android/modem-nv-ram-5554",
+		"/C/Users/Alvaro/.android/default.keyset",
+		"/C/Users/Alvaro/.android/modem-nv-ram-5556",
+		"/C/Users/Alvaro/.android/sites-settings.cfg",
+		"/C/Users/Alvaro/.android/repositories.cfg",
+		"/C/Users/Alvaro/.android/debug.keystore",
+		"/C/Users/Alvaro/.android/androidwin.cfg",
+		"/C/Users/Alvaro/.android/adb_usb.ini",
+		"/C/Program Files/Android/Android Studio/bin/idea.properties",
+		"/C/Users/Alvaro/AndroidStudioProjects/AndroidTest1/settings.gradle",
+		"/C/Users/Alvaro/AndroidStudioProjects/AndroidTest1/build.gradle",
+		"/C/Users/Alvaro/projects/electron-running-nw-test/app/index.html",
+		"/C/Users/Alvaro/projects/electron-running-nw-test/app/js/script.js",
+		"/C/Users/Alvaro/projects/electron-running-nw-test/app/css/styles.css",
+		"/C/Users/Alvaro/projects/electron-running-nw-test/build/ernt-win32-ia32/resources/app/package.json",
+		"/C/Users/Alvaro/projects/electron-running-nw-test/app/main.js",
+		"/C/Users/Alvaro/projects/electron-running-nw-test/package.json",
+		"/C/Users/Alvaro/projects/electron-running-nw-test/app/package.json",
+		"/C/Users/Alvaro/projects/electron-quick-start/LICENSE.md",
+		"/C/Users/Alvaro/projects/electron-quick-start/package.json",
+		"/C/Users/Alvaro/projects/your-first-node-webkit-app/package.json",
+		"/C/Users/Alvaro/projects/electron-running-nw-test/index.html",
+		"/C/Users/Alvaro/projects/electron-running-nw-test/js/script.js",
+		"/C/Users/Alvaro/projects/electron-running-nw-test/main.js",
+		"/C/Users/Alvaro/projects/electron-running-nw-test/index.html.bak",
+		"/C/Users/Alvaro/Downloads/Preview and Print Certificate of Achievement.html"
+	],
+	"find":
+	{
+		"height": 28.0
+	},
+	"find_in_files":
+	{
+		"height": 96.0,
+		"where_history":
+		[
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+			"zombie_spawn_timer_limit",
+			"ZOMBIE_SPAWN_TIMER_ADD",
+			"ZOMBIE_SPAWN_TIMER_LIMIT",
+			"width",
+			"');\n",
+			"CheckBu",
+			"healthString",
+			"font",
+			"FastClick",
+			"\n\n@-webkit-keyframes gotoDark { \n  100% { \n    -webkit-transform: rotate(360deg);\n  } \n}",
+			"');\n",
+			"light",
+			"arrows",
+			"weapon",
+			"by hand",
+			"image",
+			"Image",
+			"image",
+			"Image",
+			"image",
+			"Image",
+			"image",
+			"Image",
+			"image",
+			"loadImage",
+			"src",
+			"Dialog",
+			"dialog",
+			"resource-ref",
+			"spring-jpa",
+			">\n"
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+			"zombieSpawnTimerLimit",
+			"ZOMBIE_SPAWN_TIMER_INC",
+			"zombie_spawn_timer_limit"
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"selected": 0,
+			"sheets":
+			[
+				{
+					"buffer": 0,
+					"file": "www/js/game.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 2170,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.sublime-syntax",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 0,
+					"type": "text"
+				}
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 28.0
+	},
+	"input":
+	{
+		"height": 36.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.find_results":
+	{
+		"height": 0.0
+	},
+	"pinned_build_system": "",
+	"project": "zombroid.sublime-project",
+	"replace":
+	{
+		"height": 66.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_symbol":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"selected_group": 0,
+	"settings":
+	{
+	},
+	"show_minimap": true,
+	"show_open_files": false,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 234.0,
+	"status_bar_visible": true,
+	"template_settings":
+	{
+	}
+}
