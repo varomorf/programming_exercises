@@ -3,6 +3,14 @@ var height = 600;
 
 var game = new Phaser.Game(width, height, Phaser.CANVAS, 'game', { preload: preload, create: create, update: update });
 
+var ZOMBIE_DEFAULT_TIMER_LIMIT = 1000;
+var ZOMBIE_SPAWN_TIMER_INC = 1000;
+
+var ZOMBIE_MIN_SPEED_INITIAL = 20;
+var ZOMBIE_MAX_SPEED_INITIAL = 100;
+
+var MAX_COLLISIONS = 3;
+
 var timeCounter = 0;
 var timeText;
 var hearts;
@@ -11,11 +19,8 @@ var zombies;
 var ball = null;
 
 var zombieSpawnTimer = 0;
-var zombieSpawnTimerLimit = 1000;
-var ZOMBIE_SPAWN_TIMER_INC = 1000;
+var zombieSpawnTimerLimit = ZOMBIE_DEFAULT_TIMER_LIMIT;
 
-var ZOMBIE_MIN_SPEED_INITIAL = 20;
-var ZOMBIE_MAX_SPEED_INITIAL = 100;
 var ZOMBIE_SPEED_INC = 10;
 var zombieMinSpeed = ZOMBIE_MIN_SPEED_INITIAL;
 var zombieMaxSpeed = ZOMBIE_MAX_SPEED_INITIAL;
@@ -25,7 +30,6 @@ var hitSound;
 var endSound;
 
 var collisionNum = 0;
-var MAX_COLLISIONS = 3;
 
 var gameLostText;
 
@@ -178,11 +182,15 @@ function gameEnd(){
     gameLostText.anchor.y = 0.5;
     game.physics.arcade.isPaused = true;
     endSound.loopFull();
-    setTimeout(restartGame, 5000);
+    setTimeout(restartGame, 10000);
 }
 
 function restartGame(){
     zombies.removeAll();
+    zombieSpawnTimer = 0;
+    zombieSpawnTimerLimit = ZOMBIE_DEFAULT_TIMER_LIMIT;
+    zombieMinSpeed = ZOMBIE_MIN_SPEED_INITIAL;
+    zombieMaxSpeed = ZOMBIE_MAX_SPEED_INITIAL;
 
     timeCounter = 0;
     collisionNum = 0;
@@ -194,6 +202,6 @@ function restartGame(){
     gameLostText.visible = false;
 
     endSound.stop();
-    
+
     game.physics.arcade.isPaused = false;
 }
