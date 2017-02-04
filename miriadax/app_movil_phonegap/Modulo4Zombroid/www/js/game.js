@@ -161,4 +161,14 @@ function gameEnd(){
     gameLostText.anchor.y = 0.5;
     game.physics.arcade.isPaused = true;
     endSound.loopFull();
+    setTimeout(restartGame, 5000);
+}
+
+function restartGame(){
+    zombies.removeAll();
+    timeCounter = 0;
+    collisionNum = 0;
+    gameLostText.visible = false;
+    endSound.stop();
+    game.physics.arcade.isPaused = false;
 }
