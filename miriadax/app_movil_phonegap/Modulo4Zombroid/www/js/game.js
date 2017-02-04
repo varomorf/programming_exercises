@@ -74,7 +74,7 @@ function spawnZombie(){
 
     //  Tell it we don't want physics to manage the rotation
     zombie.body.allowRotation = false;
-    zombie.speed = getRandomSpeed();
+    zombie.speed = game.rnd.integerInRange(zombieMinSpeed, zombieMaxSpeed);
     console.log(zombie.speed);
 
     zombies.push(zombie);
@@ -88,14 +88,10 @@ function prepareZombieWalkAnimation(aZombie){
 }
 
 function getRandomPos(){
-    var x = Math.random() * width;
-    var y = Math.random() * height;
+    var x = game.rnd.integerInRange(0, width);
+    var y = game.rnd.integerInRange(0, height);
 
     return {x:x, y:y};
-}
-
-function getRandomSpeed(){
-    return Math.round(zombieMinSpeed + Math.random() * (zombieMaxSpeed - zombieMinSpeed));
 }
 
 function updateTime(){
