@@ -3,8 +3,11 @@ var height = 600;
 
 var game = new Phaser.Game(width, height, Phaser.CANVAS, 'game', { preload: preload, create: create, update: update });
 
+var timeCounter = 0;
+var timeText = '';
+
 var zombies = [];
-var ball;
+var ball = null;
 
 var zombieSpawnTimer = 0;
 var zombieSpawnTimerLimit = 1000;
@@ -24,8 +27,13 @@ function preload() {
 function create() {
     game.physics.startSystem(Phaser.Physics.ARCADE);
 
+    var style = { font: "32px Arial", fill: "#FFF" };
+    timeText = game.add.text(10, 10, '00:00', style);
+
     ball = game.add.sprite(game.world.centerX, game.world.centerY, 'ball');
     game.physics.enable(ball, Phaser.Physics.ARCADE);
+
+    game.time.events.loop(Phaser.Timer.SECOND, updateTime, this);
 }
 
 function update() {
@@ -87,4 +95,24 @@ function getRandomPos(){
 
 function getRandomSpeed(){
     return zombieMinSpeed + Math.random() * (zombieMaxSpeed - zombieMinSpeed);
+}
+
+function updateTime(){
+    timeCounter++;
+
+    var minutes = Math.floor(timeCounter / 60);
+    var seconds = timeCounter % 60;
+
+    var text = '';
+    if(minutes <= 9){
+        text += '0';
+    }
+    text += minutes;
+    text += ':';
+    if(seconds <= 9){
+        text += '0';
+    }
+    text += seconds;
+
+    timeText.setText(text);
 }
