@@ -94,7 +94,7 @@ function getRandomPos(){
 }
 
 function getRandomSpeed(){
-    return zombieMinSpeed + Math.random() * (zombieMaxSpeed - zombieMinSpeed);
+    return Math.round(zombieMinSpeed + Math.random() * (zombieMaxSpeed - zombieMinSpeed));
 }
 
 function updateTime(){
