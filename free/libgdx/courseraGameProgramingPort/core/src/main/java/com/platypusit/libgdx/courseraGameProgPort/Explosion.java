@@ -1,7 +1,6 @@
 package com.platypusit.libgdx.courseraGameProgPort;
 
 import com.badlogic.gdx.audio.Sound;
-import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Rectangle2D;
@@ -33,13 +32,13 @@ public class Explosion {
     private boolean playing = false;
     private boolean finished = false;
 
-    /// <summary>
-    /// Constructs a new explosion object
-    /// </summary>
-    /// <param name="spriteStrip">the sprite strip for the explosion</param>
-    /// <param name="x">the x location of the center of the explosion</param>
-    /// <param name="y">the y location of the center of the explosion</param>
-    /// <param name="explosionSound">Sound for the explosion</param>
+    /**
+     * <p>Constructs a new explosion object</p>
+     * @param spriteStrip the sprite strip for the explosion
+     * @param x the x location of the center of the explosion
+     * @param y the y location of the center of the explosion
+     * @param explosionSound Sound for the explosion
+     */
     public Explosion(Texture spriteStrip, float x, float y, Sound explosionSound)
     {
         // initialize animation to start at frame 0
@@ -50,26 +49,28 @@ public class Explosion {
         explosionSound.play();
     }
 
-    /// <summary>
-    /// Gets the collision rectangle for the explosion
-    /// </summary>
+    /**
+     * <p>Gets the collision rectangle for the explosion</p>
+     * @return the collision rectangle
+     */
     public Rectangle2D getCollisionRectangle()
     {
         return drawRectangle;
     }
 
-    /// <summary>
-    /// Gets whether or not the explosion is finished
-    /// </summary>
+    /**
+     * <p>Gets whether or not the explosion is finished</p>
+     * @return true if finished, false otherwise
+     */
     public boolean isFinished()
     {
         return finished;
     }
 
-    /// <summary>
-    /// Updates the explosion. This only has an effect if the explosion animation is playing
-    /// </summary>
-    /// <param name="gameTime">the game time</param>
+    /**
+     * <p>Updates the explosion. This only has an effect if the explosion animation is playing</p>
+     * @param deltaSeconds the game time in seconds
+     */
     public void update(float deltaSeconds)
     {
         if (playing)
@@ -97,10 +98,10 @@ public class Explosion {
         }
     }
 
-    /// <summary>
-    /// Draws the explosion. This only has an effect if the explosion animation is playing
-    /// </summary>
-    /// <param name="spriteBatch">the spritebatch</param>
+    /**
+     * <p>Draws the explosion. This only has an effect if the explosion animation is playing</p>
+     * @param spriteBatch the spritebatch
+     */
     public void draw(SpriteBatch spriteBatch)
     {
         if (playing)
@@ -109,10 +110,10 @@ public class Explosion {
         }
     }
 
-    /// <summary>
-    /// Loads the content for the explosion
-    /// </summary>
-    /// <param name="spriteStrip">the sprite strip for the explosion</param>
+    /**
+     * <p>Loads the content for the explosion</p>
+     * @param spriteStrip the sprite strip for the explosion
+     */
     private void initialize(Texture spriteStrip)
     {
         // load the animation strip
@@ -127,11 +128,11 @@ public class Explosion {
         sourceRectangle = new Rectangle2D(0, 0, frameWidth, frameHeight);
     }
 
-    /// <summary>
-    /// Starts playing the animation for the explosion
-    /// </summary>
-    /// <param name="x">the x location of the center of the explosion</param>
-    /// <param name="y">the y location of the center of the explosion</param>
+    /**
+     * <p>Starts playing the animation for the explosion</p>
+     * @param x the x location of the center of the explosion
+     * @param y the y location of the center of the explosion
+     */
     private void play(float x, float y)
     {
         // reset tracking values
@@ -145,10 +146,10 @@ public class Explosion {
         setSourceRectangleLocation(currentFrame);
     }
 
-    /// <summary>
-    /// Sets the source rectangle location to correspond with the given frame
-    /// </summary>
-    /// <param name="frameNumber">the frame number</param>
+    /**
+     * <p>Sets the source rectangle location to correspond with the given frame</p>
+     * @param frameNumber the frame number
+     */
     private void setSourceRectangleLocation(int frameNumber)
     {
         // calculate X and Y based on frame number
