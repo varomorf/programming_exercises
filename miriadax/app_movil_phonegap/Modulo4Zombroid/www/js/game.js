@@ -5,6 +5,7 @@ var game = new Phaser.Game(width, height, Phaser.CANVAS, 'game', { preload: prel
 
 var timeCounter = 0;
 var timeText;
+var hearts;
 
 var zombies;
 var ball = null;
@@ -31,6 +32,11 @@ var gameLostText;
 function preload() {
     game.load.image('ball', 'assets/sprites/shinyball.png');
     game.load.atlas('zombie', 'assets/sprites/zombie1.png', 'assets/sprites/zombie1.json');
+    game.load.image('hearts0', 'assets/sprites/hearts0.png');
+    game.load.image('hearts1', 'assets/sprites/hearts1.png');
+    game.load.image('hearts2', 'assets/sprites/hearts2.png');
+    game.load.image('hearts3', 'assets/sprites/hearts3.png');
+
     game.load.audio('brainsSound', 'assets/audio/sfx/brains.mp3');
     game.load.audio('hitSound', 'assets/audio/sfx/hit.mp3');
     game.load.audio('endSound', 'assets/audio/music/end.mp3');
@@ -47,6 +53,8 @@ function create() {
     ball = game.add.sprite(game.world.centerX, game.world.centerY, 'ball');
     game.physics.enable(ball, Phaser.Physics.ARCADE);
     ball.body.collideWorldBounds = true;
+
+    addHearstSprite();
 
     game.time.events.loop(Phaser.Timer.SECOND, updateTime, this);
 
@@ -149,9 +157,18 @@ function collisionWithZombie(ball, zombie){
 
     collisionNum++;
     console.log('Collision: ' + collisionNum);
+
+    hearts.destroy();
+    addHearstSprite();
+    
     if(collisionNum >= MAX_COLLISIONS){
         gameEnd();
     }
+}
+
+function addHearstSprite(){
+    hearts = game.add.sprite(timeText.width + 20, 10, 'hearts' + (3 - collisionNum));
+    hearts.scale.setTo(2, 2);
 }
 
 function gameEnd(){
@@ -166,9 +183,17 @@ function gameEnd(){
 
 function restartGame(){
     zombies.removeAll();
+
     timeCounter = 0;
     collisionNum = 0;
+
+    hearts.destroy();
+    addHearstSprite();
+    updateTime();
+
     gameLostText.visible = false;
+
     endSound.stop();
+    
     game.physics.arcade.isPaused = false;
 }
