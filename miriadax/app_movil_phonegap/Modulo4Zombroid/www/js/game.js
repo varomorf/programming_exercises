@@ -4,7 +4,7 @@ var height = 600;
 var game = new Phaser.Game(width, height, Phaser.CANVAS, 'game', { preload: preload, create: create, update: update });
 
 var zombies = [];
-var zombie;
+var ball;
 
 var zombieSpawnTimer = 0;
 var zombieSpawnTimerLimit = 1000;
@@ -17,19 +17,27 @@ var zombieMinSpeed = ZOMBIE_MIN_SPEED_INITIAL;
 var zombieMaxSpeed = ZOMBIE_MAX_SPEED_INITIAL;
 
 function preload() {
-
+    game.load.image('ball', 'assets/sprites/shinyball.png');
     game.load.atlas('zombie', 'assets/sprites/zombie1.png', 'assets/sprites/zombie1.json');
-
 }
 
 function create() {
-
     game.physics.startSystem(Phaser.Physics.ARCADE);
+
+    ball = game.add.sprite(game.world.centerX, game.world.centerY, 'ball');
+    game.physics.enable(ball, Phaser.Physics.ARCADE);
 }
 
 function update() {
+    game.physics.arcade.moveToPointer(ball, 400);
+    //  if it's overlapping the mouse, don't move any more
+    if (Phaser.Rectangle.contains(ball.body, game.input.x, game.input.y))
+    {
+        ball.body.velocity.setTo(0, 0);
+    }
+
     zombies.forEach(function(zombie){
-        zombie.rotation = game.physics.arcade.moveToPointer(zombie, zombie.speed, game.input.activePointer);
+        zombie.rotation = game.physics.arcade.moveToObject(zombie, ball, zombie.speed);
     });
 
     zombieSpawnTimer += game.time.elapsed;
