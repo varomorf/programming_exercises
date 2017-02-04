@@ -32,6 +32,7 @@ function create() {
 
     ball = game.add.sprite(game.world.centerX, game.world.centerY, 'ball');
     game.physics.enable(ball, Phaser.Physics.ARCADE);
+    ball.body.collideWorldBounds = true;
 
     game.time.events.loop(Phaser.Timer.SECOND, updateTime, this);
 }
