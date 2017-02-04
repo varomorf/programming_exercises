@@ -59,8 +59,10 @@ function update() {
     // check collisions between zombies and ball
     game.physics.arcade.collide(ball, zombies, collisionWithZombie);
 
-    // spawn new zombies when timer goes off
-    zombieSpawnTimer += game.time.elapsed;
+    // spawn new zombies when timer goes off if not paused
+    if(!game.physics.arcade.isPaused){
+        zombieSpawnTimer += game.time.elapsed;
+    }
     if(zombieSpawnTimer >= zombieSpawnTimerLimit){
         zombieSpawnTimer = 0;
         zombieSpawnTimerLimit += ZOMBIE_SPAWN_TIMER_INC;
@@ -106,23 +108,25 @@ function getRandomPos(){
 }
 
 function updateTime(){
-    timeCounter++;
+    if(!game.physics.arcade.isPaused){
+        timeCounter++;
 
-    var minutes = Math.floor(timeCounter / 60);
-    var seconds = timeCounter % 60;
+        var minutes = Math.floor(timeCounter / 60);
+        var seconds = timeCounter % 60;
 
-    var text = '';
-    if(minutes <= 9){
-        text += '0';
+        var text = '';
+        if(minutes <= 9){
+            text += '0';
+        }
+        text += minutes;
+        text += ':';
+        if(seconds <= 9){
+            text += '0';
+        }
+        text += seconds;
+
+        timeText.setText(text);
     }
-    text += minutes;
-    text += ':';
-    if(seconds <= 9){
-        text += '0';
-    }
-    text += seconds;
-
-    timeText.setText(text);
 }
 
 function collisionWithZombie(ball, zombie){
@@ -130,4 +134,11 @@ function collisionWithZombie(ball, zombie){
 
     collisionNum++;
     console.log('Collision: ' + collisionNum);
+    if(collisionNum >= MAX_COLLISIONS){
+        gameEnd();
+    }
+}
+
+function gameEnd(){
+    game.physics.arcade.isPaused = true;
 }
