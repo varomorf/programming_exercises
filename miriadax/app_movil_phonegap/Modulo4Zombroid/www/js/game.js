@@ -111,6 +111,7 @@ function inicio(){
         var zombie = game.add.sprite(randomPos.x, randomPos.y, 'zombie');
         zombie.speed = speed;
         zombie.anchor.setTo(0.5, 0.5);
+        zombie.scale.setTo(0.75, 0.75);
 
         prepareZombieWalkAnimation(zombie);
 
