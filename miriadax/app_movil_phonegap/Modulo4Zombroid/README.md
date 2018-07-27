@@ -4,7 +4,7 @@
 
 ### PhoneGap CLI
 
-    $ phonegap create my-app --template blank
+    $ phonegap run browser
 
 ### Desktop
 
